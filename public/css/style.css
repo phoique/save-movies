@@ -1,0 +1,18 @@
+html {
+  background-color: #2c3e50;
+}
+
+.margin-top {
+  margin-top: 20px;
+}
+
+.cards {
+  width: 270px;
+  height: 350px;
+  background-color: aqua;
+}
+
+.cards-header {
+  text-align: center;
+  padding-top: 20px;
+}

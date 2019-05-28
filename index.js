@@ -13,8 +13,11 @@ const settings = hbsExpress.create({
 app.engine('hbs', settings.engine);
 app.set('view engine', 'hbs');
 
+// Static file css, js...
+app.use('/static', express.static('public'));
+
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', {title: 'Save Movies'});
 });
 
 app.listen(process.env.PORT, () => {
