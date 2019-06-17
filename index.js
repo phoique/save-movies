@@ -20,6 +20,6 @@ app.get('/', (req, res) => {
     res.render('index', {title: 'Save Movies'});
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log(`Server started: ${process.env.PORT}`);
 });

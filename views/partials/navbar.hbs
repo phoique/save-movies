@@ -1,42 +1,18 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item">
-      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-    </a>
-
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-      data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item">
-        Filmler
-      </a>
-
-      <a class="navbar-item">
-        Film ekle
-      </a>
-      <div class="navbar-item">
-        <input class="input is-small" type="text" placeholder="Film arayın...">
+<nav>
+  <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
+    <div class="container"><a class="navbar-brand" href="/">Film Kaydet</a><button class="navbar-toggler"
+        data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+          class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navcol-1">
+        <ul class="nav navbar-nav mr-auto">
+          <li class="nav-item" role="presentation"><a class="nav-link" href="/">Anasayfa</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" href="/add">Film ekle</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" href="/users">Üyeler</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" href="/check">Onaylanacak
+              filmler</a></li>
+        </ul><span class="navbar-text actions"> <a href="/register" class="login">Kayıt ol</a><a
+            class="btn btn-light action-button" role="button" href="/login">Giriş Yap</a></span>
       </div>
     </div>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary">
-            <strong>Kayıt ol</strong>
-          </a>
-          <a class="button">
-            Giriş yap
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+  </nav>
 </nav>
