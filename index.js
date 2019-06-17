@@ -17,7 +17,11 @@ app.set('view engine', 'hbs');
 app.use('/static', express.static('public'));
 
 app.get('/', (req, res) => {
-    res.render('index', {title: 'Save Movies'});
+    res.render('index', {title: 'Anasayfa'});
+});
+
+app.get('/movies', (req, res) => {
+  res.render('movies', {title: 'Filmler'});
 });
 
 app.listen(process.env.PORT || 3000, () => {
