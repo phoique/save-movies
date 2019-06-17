@@ -24,6 +24,10 @@ app.get('/movies', (req, res) => {
   res.render('movies', {title: 'Filmler'});
 });
 
+app.get('/add', (req, res) => {
+  res.render('add', {title: 'Film ekle'});
+});
+
 app.listen(process.env.PORT || 3000, () => {
     console.log(`Server started: ${process.env.PORT}`);
 });
