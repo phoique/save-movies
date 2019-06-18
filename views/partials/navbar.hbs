@@ -6,13 +6,39 @@
       <div class="collapse navbar-collapse" id="navcol-1">
         <ul class="nav navbar-nav mr-auto">
           <li class="nav-item" role="presentation"><a class="nav-link" href="/">Anasayfa</a></li>
-          <li class="nav-item" role="presentation"><a class="nav-link" href="/movies">Filmler</a></li>
-          <li class="nav-item" role="presentation"><a class="nav-link" href="/add">Film ekle</a></li>
-          <li class="nav-item" role="presentation"><a class="nav-link" href="/users">Üyeler</a></li>
-          <li class="nav-item" role="presentation"><a class="nav-link" href="/published">Onaylanacak
-              filmler</a></li>
-        </ul><span class="navbar-text actions"> <a href="/register" class="login">Kayıt ol</a><a
-            class="btn btn-light action-button" role="button" href="/login">Giriş Yap</a></span>
+          {{#if_equals login "===" true}}
+            <li class="nav-item" role="presentation"><a class="nav-link" href="/movies">Filmlerim</a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link" href="/add">Film ekle</a></li>
+          {{/if_equals}}
+          {{#if_equals user_role "===" "admin"}}
+            <li class="nav-item" role="presentation"><a class="nav-link" href="/users">Üyeler</a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link" href="/published">Onaylanacak filmler</a></li>
+          {{/if_equals}}
+
+        </ul>
+        <span class="navbar-text actions">
+
+          {{#if_equals login "===" false}}
+          <a href="/register" class="login">Kayıt ol</a>
+          <a class="btn btn-light action-button" role="button" href="/login">Giriş Yap</a>
+
+          {{else}}
+          <li class="nav-item dropdown" style="list-style-type: none">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              {{username}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/add">Film Ekle</a>
+              <a class="dropdown-item" href="/settings">Ayarlar</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/logout">Çıkış Yap</a>
+            </div>
+          </li>
+
+          {{/if_equals}}
+
+        </span>
       </div>
     </div>
   </nav>
