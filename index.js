@@ -40,6 +40,10 @@ app.get('/register', (req, res) => {
   res.render('register', { title: 'Kayıt ol' });
 });
 
+app.get('/login', (req, res) => {
+  res.render('login', { title: 'Giriş yap' });
+});
+
 app.listen(process.env.PORT || 3000, () => {
     console.log(`Server started: ${process.env.PORT}`);
 });
