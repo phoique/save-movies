@@ -1,7 +1,12 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import hbsExpress from 'express-handlebars';
+import datebaseConnect from './helper/datebase';
+
+// Dotenv run
 dotenv.config();
+// Datebase connection
+datebaseConnect();
 
 const app = express();
 
