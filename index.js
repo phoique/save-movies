@@ -32,6 +32,10 @@ app.get('/users', (req, res) => {
   res.render('users', {title: 'Kayıtlı kullanıcılar'});
 });
 
+app.get('/published', (req, res) => {
+  res.render('publishedMovies', { title: 'Filmleri yayınla' });
+});
+
 app.listen(process.env.PORT || 3000, () => {
     console.log(`Server started: ${process.env.PORT}`);
 });
