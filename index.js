@@ -28,6 +28,10 @@ app.get('/add', (req, res) => {
   res.render('add', {title: 'Film ekle'});
 });
 
+app.get('/users', (req, res) => {
+  res.render('users', {title: 'Kayıtlı kullanıcılar'});
+});
+
 app.listen(process.env.PORT || 3000, () => {
     console.log(`Server started: ${process.env.PORT}`);
 });
