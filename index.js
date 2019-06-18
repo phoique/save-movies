@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import hbsExpress from 'express-handlebars';
 import hds from 'handlebars';
+import parser from 'body-parser';
 
 // Datebase
 import datebaseConnect from './helper/datebase';
@@ -12,7 +13,7 @@ import register from './routes/register';
 // Dotenv run
 dotenv.config();
 // Datebase connection
-//datebaseConnect();
+datebaseConnect();
 
 const app = express();
 
@@ -43,7 +44,11 @@ app.set('view engine', 'hbs');
 // Static file css, js...
 app.use('/static', express.static('public'));
 
-app.use(register);
+app.use(parser.json());
+app.use(parser.urlencoded({ extended: true }));
+
+// Use route
+app.use('/register', register);
 
 app.get('/', (req, res) => {
     res.render('index', {
