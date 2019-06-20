@@ -3,47 +3,58 @@ import bcrypt from 'bcrypt';
 // Models import
 import UserModel from '../models/User';
 
+// Settings
 const register = express.Router();
 
 // Register view
 register.get('/', (request, reponse) => {
-  reponse.render('register', { 
+  reponse.render('register', {
     title: 'Kayıt ol',
-    login: false,
-    username: 'Admin',
-    user_role: 'user'
+    login: (request.session.username) ? true : false,
+    username: request.session.username,
+    user_role: request.session.role
   });
 });
 
 // Register post
 register.post('/', (request, response) => {
-  const { username, password } = request.body;
+  const { username, password, password_repeat } = request.body;
 
-  const hashPromise = bcrypt.hash(password, 10);
+  if (password !== password_repeat) {
+    response.redirect('/register');
+  } else {
 
-  // Password hash success
-  hashPromise.then(
-    password => {
+    const hashPromise = bcrypt.hash(password, 10);
 
-      const newUser = new UserModel({
-        username, 
-        password
-      });
-    
-      // User save
-      const userPromise = newUser.save();
-    
-      // Register success
-      userPromise.then((user) => {
-        response.redirect('/');
-      });
-      userPromise.catch((error) => console.log(error));
+    // Password hash success
+    hashPromise.then(
+      password => {
 
-    }
+        const newUser = new UserModel({
+          username,
+          password,
+          role: 'user'
+        });
+
+        // User save
+        const userPromise = newUser.save();
+
+        // Register success
+        userPromise.then((user) => {
+          request.session.username = username;
+          request.session.role = 'user';
+          response.redirect('/');
+        });
+        userPromise.catch((error) => console.log(error));
+
+      }
     );
 
     // Password hash error
     hashPromise.catch(error => console.log('Password hash error:', error));
+
+  }
+
 });
 
 export default register;

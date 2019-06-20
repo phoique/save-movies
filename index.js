@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import hbsExpress from 'express-handlebars';
 import hds from 'handlebars';
 import parser from 'body-parser';
+import session from 'express-session';
 
 // Datebase
 import datebaseConnect from './helper/datebase';
@@ -16,6 +17,13 @@ dotenv.config();
 datebaseConnect();
 
 const app = express();
+
+// Session
+app.use(session({
+  secret: process.env.SECRET_KEY,
+  resave: false,
+  saveUninitialized: true
+}));
 
 // Template engine. Default layout. layout.hbs
 const settings = hbsExpress.create({
