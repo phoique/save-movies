@@ -58,57 +58,57 @@ app.use(parser.urlencoded({ extended: true }));
 // Use route
 app.use('/register', register);
 
-app.get('/', (req, res) => {
-    res.render('index', {
+app.get('/', (request, response) => {
+  response.render('index', {
       title: 'Anasayfa', 
-      login: false,
-      username: 'Admin',
-      user_role: 'user'
+      login: (request.session.username) ? true : false,
+      username: request.session.username,
+      user_role: request.session.role
     });
 });
 
-app.get('/movies', (req, res) => {
-  res.render('movies', {
+app.get('/movies', (request, response) => {
+  response.render('movies', {
     title: 'Filmler',
-    login: false,
-    username: 'Admin',
-    user_role: 'user'
+    login: (request.session.username) ? true : false,
+    username: request.session.username,
+    user_role: request.session.role
   });
 });
 
-app.get('/add', (req, res) => {
-  res.render('add', {
+app.get('/add', (request, response) => {
+  response.render('add', {
     title: 'Film ekle',
-    login: false,
-    username: 'Admin',
-    user_role: 'user'
+    login: (request.session.username) ? true : false,
+    username: request.session.username,
+    user_role: request.session.role
   });
 });
 
-app.get('/users', (req, res) => {
-  res.render('users', {
+app.get('/users', (request, response) => {
+  response.render('users', {
     title: 'Kayıtlı kullanıcılar',
-    login: false,
-    username: 'Admin',
-    user_role: 'user'
+    login: (request.session.username) ? true : false,
+    username: request.session.username,
+    user_role: request.session.role
   });
 });
 
-app.get('/published', (req, res) => {
-  res.render('publishedMovies', { 
+app.get('/published', (request, response) => {
+  response.render('publishedMovies', { 
     title: 'Filmleri yayınla',
-    login: false,
-    username: 'Admin',
-    user_role: 'user'
+    login: (request.session.username) ? true : false,
+    username: request.session.username,
+    user_role: request.session.role
   });
 });
 
-app.get('/login', (req, res) => {
-  res.render('login', { 
+app.get('/login', (request, response) => {
+  response.render('login', { 
     title: 'Giriş yap',
-    login: false,
-    username: 'Admin',
-    user_role: 'user'
+    login: (request.session.username) ? true : false,
+    username: request.session.username,
+    user_role: request.session.role
   });
 });
 
