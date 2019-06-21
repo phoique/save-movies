@@ -11,6 +11,7 @@ import datebaseConnect from './helper/datebase';
 // Route
 import register from './routes/register';
 import login from './routes/login';
+import logout from './routes/logout';
 
 // Midddleware
 import isLogin from './middleware/isLogin';
@@ -63,6 +64,7 @@ app.use(parser.urlencoded({ extended: true }));
 // Use route
 app.use('/register', loginRedirect, register);
 app.use('/login', loginRedirect, login);
+app.use('/logout', logout);
 
 app.get('/', (request, response) => {
   response.render('index', {
