@@ -4,10 +4,10 @@ import bcrypt from 'bcrypt';
 import UserModel from '../models/User';
 
 // Settings
-const register = express.Router();
+const registerRoute = express.Router();
 
 // Register view
-register.get('/', (request, reponse) => {
+registerRoute.get('/', (request, reponse) => {
   reponse.render('register', {
     title: 'Kayıt ol',
     login: (request.session.username) ? true : false,
@@ -17,7 +17,7 @@ register.get('/', (request, reponse) => {
 });
 
 // Register post
-register.post('/', (request, response) => {
+registerRoute.post('/', (request, response) => {
   const { username, password, password_repeat } = request.body;
 
   if (password !== password_repeat) {
@@ -57,4 +57,4 @@ register.post('/', (request, response) => {
 
 });
 
-export default register;
+export default registerRoute;

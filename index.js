@@ -10,6 +10,7 @@ import datebaseConnect from './helper/datebase';
 
 // Route
 import register from './routes/register';
+import login from './routes/login';
 
 // Dotenv run
 dotenv.config();
@@ -57,6 +58,7 @@ app.use(parser.urlencoded({ extended: true }));
 
 // Use route
 app.use('/register', register);
+app.use('/login', login);
 
 app.get('/', (request, response) => {
   response.render('index', {
@@ -97,15 +99,6 @@ app.get('/users', (request, response) => {
 app.get('/published', (request, response) => {
   response.render('publishedMovies', { 
     title: 'Filmleri yayınla',
-    login: (request.session.username) ? true : false,
-    username: request.session.username,
-    user_role: request.session.role
-  });
-});
-
-app.get('/login', (request, response) => {
-  response.render('login', { 
-    title: 'Giriş yap',
     login: (request.session.username) ? true : false,
     username: request.session.username,
     user_role: request.session.role
