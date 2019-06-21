@@ -12,6 +12,10 @@ import datebaseConnect from './helper/datebase';
 import register from './routes/register';
 import login from './routes/login';
 
+// Midddleware
+import isLogin from './middleware/isLogin';
+import loginRedirect from './middleware/loginRedirect';
+
 // Dotenv run
 dotenv.config();
 // Datebase connection
@@ -57,8 +61,8 @@ app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
 // Use route
-app.use('/register', register);
-app.use('/login', login);
+app.use('/register', loginRedirect, register);
+app.use('/login', loginRedirect, login);
 
 app.get('/', (request, response) => {
   response.render('index', {
@@ -69,7 +73,7 @@ app.get('/', (request, response) => {
     });
 });
 
-app.get('/movies', (request, response) => {
+app.get('/movies', isLogin, (request, response) => {
   response.render('movies', {
     title: 'Filmler',
     login: (request.session.username) ? true : false,
@@ -78,7 +82,7 @@ app.get('/movies', (request, response) => {
   });
 });
 
-app.get('/add', (request, response) => {
+app.get('/add', isLogin, (request, response) => {
   response.render('add', {
     title: 'Film ekle',
     login: (request.session.username) ? true : false,
@@ -87,7 +91,7 @@ app.get('/add', (request, response) => {
   });
 });
 
-app.get('/users', (request, response) => {
+app.get('/users', isLogin, (request, response) => {
   response.render('users', {
     title: 'Kayıtlı kullanıcılar',
     login: (request.session.username) ? true : false,
@@ -96,7 +100,7 @@ app.get('/users', (request, response) => {
   });
 });
 
-app.get('/published', (request, response) => {
+app.get('/published', isLogin, (request, response) => {
   response.render('publishedMovies', { 
     title: 'Filmleri yayınla',
     login: (request.session.username) ? true : false,
