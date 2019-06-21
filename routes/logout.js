@@ -1,6 +1,5 @@
 import express from 'express';
 
-// Settings
 const logoutRoute = express.Router();
 
 // User login view

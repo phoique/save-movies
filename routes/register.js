@@ -3,7 +3,6 @@ import bcrypt from 'bcrypt';
 // Models import
 import UserModel from '../models/User';
 
-// Settings
 const registerRoute = express.Router();
 
 // Register view

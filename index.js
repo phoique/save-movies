@@ -12,6 +12,7 @@ import datebaseConnect from './helper/datebase';
 import register from './routes/register';
 import login from './routes/login';
 import logout from './routes/logout';
+import home from './routes/home';
 
 // Midddleware
 import isLogin from './middleware/isLogin';
@@ -65,15 +66,8 @@ app.use(parser.urlencoded({ extended: true }));
 app.use('/register', loginRedirect, register);
 app.use('/login', loginRedirect, login);
 app.use('/logout', logout);
+app.use('/', home);
 
-app.get('/', (request, response) => {
-  response.render('index', {
-      title: 'Anasayfa', 
-      login: (request.session.username) ? true : false,
-      username: request.session.username,
-      user_role: request.session.role
-    });
-});
 
 app.get('/movies', isLogin, (request, response) => {
   response.render('movies', {
