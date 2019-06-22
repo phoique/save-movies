@@ -4,6 +4,8 @@ import hbsExpress from 'express-handlebars';
 import hds from 'handlebars';
 import parser from 'body-parser';
 import session from 'express-session';
+import fileUpload from 'express-fileupload';
+import path from 'path';
 
 // Datebase
 import datebaseConnect from './helper/datebase';
@@ -31,6 +33,14 @@ app.use(session({
   secret: process.env.SECRET_KEY,
   resave: false,
   saveUninitialized: true
+}));
+
+// File upload
+app.use(fileUpload({
+  createParentPath: true,
+  limits: { 
+    fileSize: 2 * 1024 * 1024 * 1024 //2MB max file(s) size
+},
 }));
 
 // Template engine. Default layout. layout.hbs
