@@ -6,12 +6,12 @@
 
     {{#each movies}}
       <div class="col-md-4 col-lg-3 item">
-        <div class="box" style="background-image:url(static/img/movies/{{image_name}}">
+        <div class="box" style="background-image:url(http://localhost:3000/static/img/movies/{{image_name}}">
           <div class="cover">
             <h3 class="name">{{name}}</h3>
             <p class="genre">
               {{#each genre}}
-                {{this}}
+                {{ this }}
               {{/each}}
             </p>
             <div class="movie-url">
@@ -23,7 +23,14 @@
         </div>
       </div>
     {{/each}}
-    
 
   </div>
+
+  <nav>
+    <ul class="pagination justify-content-center mt-3">
+      {{#each pages_number}}
+        <li class="page-item"><a class="page-link" href="/movies/{{ this }}">{{ this }}</a></li>
+      {{/each}}
+    </ul>
+  </nav>
 </div>

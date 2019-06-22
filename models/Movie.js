@@ -1,4 +1,5 @@
 import mongoose, { mongo } from 'mongoose';
+import paginate from 'mongoose-paginate';
 const Schema = mongoose.Schema;
 
 const MovieSchema = new Schema({
@@ -25,5 +26,8 @@ const MovieSchema = new Schema({
     type: Boolean,
   }
 });
+
+// Sayfalama için gerekli eklenti.
+MovieSchema.plugin(paginate);
 
 export default mongoose.model('movies', MovieSchema);

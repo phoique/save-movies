@@ -15,11 +15,11 @@ loginRoute.get('/', (request, response) => {
   });
 });
 
-loginRoute.post('/', (request, response) => {
+loginRoute.post('/', async (request, response) => {
   const { username, password } = request.body;
 
   // Giriş bilgileri ile kullanıcıyı arama
-  UserModel.findOne({ username }, (error, user) => {
+  await UserModel.findOne({ username }, (error, user) => {
     // Bir hata varsa.
     if (error) {
       console.log(error);
