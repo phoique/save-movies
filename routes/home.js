@@ -7,7 +7,8 @@ homeRoute.get('/', (request, response) => {
       title: 'Anasayfa', 
       login: (request.session.username) ? true : false,
       username: request.session.username,
-      user_role: request.session.role
+      user_role: request.session.role,
+      content_text: "İzlediğin filmi mi kaydetmek istiyorsun, hadi o zaman hemen kaydet."
     });
 });
 
