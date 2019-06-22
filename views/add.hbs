@@ -1,20 +1,34 @@
 <div class="movie-add-clean">
-  <form method="post">
+  <form method="post" enctype="multipart/form-data">
     <h2 class="text-center">Film Ekle</h2>
-    <div class="form-group"><input class="form-control" type="text" name="name" placeholder="Film adı"></div>
-    <div class="form-group"><input class="form-control" type="text" name="genre" placeholder="Film Türü">
+    <div class="form-group"><input class="form-control" type="text" name="name" placeholder="Film adı" required maxlength="20"></div>
+    <div class="mt-2 mb-2">
+      <label>Film türü: </label>
+      <select class="selectpicker" name="genre" multiple data-live-search="true">
+        <option selected>Aksiyon</option>
+        <option>Macera</option>
+        <option>Bilim Kurgu</option>
+        <option>Animasyon</option>
+        <option>Komedi</option>
+        <option>Suç</option>
+        <option>Drama</option>
+        <option>Gizem/Gerilim</option>
+        <option>Aşk</option>
+        <option>Korku</option>
+      </select>
     </div>
     <div class="input-group">
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroupFileAddon01">Film kapağı</span>
       </div>
       <div class="custom-file">
-        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+        <input type="file" accept=".jpg, .jpeg, .png" name="file" class="custom-file-input" id="inputGroupFile01"
+          aria-describedby="inputGroupFileAddon01">
+        <label class="custom-file-label" for="inputGroupFile01">Dosya seç...</label>
       </div>
     </div>
-    <div class="form-group form-mt"><textarea class="form-control" rows="14" name="message"
-        placeholder="Film hakkında kısa özet"></textarea>
+    <div class="form-group form-mt"><textarea class="form-control" rows="14" name="movie_abstract"
+        placeholder="Film hakkında kısa özet" required></textarea>
     </div>
     <div class="form-group"><button class="btn btn-primary text-center" type="submit">Kaydet</button></div>
   </form>
