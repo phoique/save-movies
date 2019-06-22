@@ -1,5 +1,8 @@
 import express from 'express';
-import path from 'path';
+
+// models
+import movieModel from '../models/Movie';
+import userModel from '../models/User';
 
 const addMoviesRoute = express.Router();
 
@@ -12,11 +15,43 @@ addMoviesRoute.get('/', (request, response) => {
   });
 });
 
-addMoviesRoute.post('/', (request, response) => {
-  console.log(request.body);
-  const file = request.files.movie_img;
+addMoviesRoute.post('/', async (request, response) => {
 
-  file.mv('./uploads/image/' + file.name);
+  const { name, genre, content } = request.body;
+
+  // Kullanıcı bilgileri buradan id alacağız.
+  const user = userModel.findOne({username: request.session.username});
+
+  user.then(user_id => {
+
+    // Filmi kaydetme
+    const addMovie = new movieModel({
+      user_id,
+      name,
+      genre,
+      image_name: (request.files) ? request.files.movie_img.name : "default.jpg",
+      content,
+      public: false
+    });
+
+    const moviePromise = addMovie.save();
+
+    // Filmi kaydetme başarılı ise
+    moviePromise.then(movie => {
+      // Filmi veritabanına kayıt ettikten sonra yüklenen filmi de kaydediyor. 
+      if(request.files) {
+        request.files.movie_img.mv('./uploads/image/', request.files.movie_img.name);
+      }
+      
+      response.redirect('/');
+    });
+
+    // Hata oluşmuş ise
+    moviePromise.catch(error => console.log(error));
+
+  });
+
+  user.catch(error => console.log(error));
 
 });
 

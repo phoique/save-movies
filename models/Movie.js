@@ -10,7 +10,7 @@ const MovieSchema = new Schema({
     minlength: 2
   },
   genre: {
-    type: String,
+    type: Array,
     required: true,
   },
   image_name: {
