@@ -4,117 +4,26 @@
   </div>
   <div class="row">
 
-    <div class="col-md-4 col-lg-3 item">
-      <div class="box" style="background-image:url(static/img/bird.jpg)">
-        <div class="cover">
-          <h3 class="name">Kuş kafesi</h3>
-          <p class="genre">Dram, Aksiyon</p>
-          <div class="movie-url">
-            <a href="/bird-box">
-              <button type="button" class="btn">Filme git</button>
-            </a>
+    {{#each movies}}
+      <div class="col-md-4 col-lg-3 item">
+        <div class="box" style="background-image:url(static/img/movies/{{image_name}}">
+          <div class="cover">
+            <h3 class="name">{{name}}</h3>
+            <p class="genre">
+              {{#each genre}}
+                {{this}}
+              {{/each}}
+            </p>
+            <div class="movie-url">
+              <a href="/bird-box">
+                <button type="button" class="btn">Filme git</button>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="col-md-4 col-lg-3 item">
-      <div class="box" style="background-image:url(static/img/ann.jpg)">
-        <div class="cover">
-          <h3 class="name">Yok oluş</h3>
-          <p class="genre">Dram, Aksiyon, Macera, Bilim kurgu, Korku</p>
-          <div class="movie-url">
-            <a href="/bird-box">
-              <button type="button" class="btn">Filme git</button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 col-lg-3 item">
-      <div class="box" style="background-image:url(static/img/bird.jpg)">
-        <div class="cover">
-          <h3 class="name">Kuş kafesi</h3>
-          <p class="genre">Dram, Aksiyon</p>
-          <div class="movie-url">
-            <a href="/bird-box">
-              <button type="button" class="btn">Filme git</button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 col-lg-3 item">
-      <div class="box" style="background-image:url(static/img/ann.jpg)">
-        <div class="cover">
-          <h3 class="name">Yok oluş</h3>
-          <p class="genre">Dram, Aksiyon, Macera, Bilim kurgu, Korku</p>
-          <div class="movie-url">
-            <a href="/bird-box">
-              <button type="button" class="btn">Filme git</button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 col-lg-3 item">
-      <div class="box" style="background-image:url(static/img/bird.jpg)">
-        <div class="cover">
-          <h3 class="name">Kuş kafesi</h3>
-          <p class="genre">Dram, Aksiyon</p>
-          <div class="movie-url">
-            <a href="/bird-box">
-              <button type="button" class="btn">Filme git</button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 col-lg-3 item">
-      <div class="box" style="background-image:url(static/img/ann.jpg)">
-        <div class="cover">
-          <h3 class="name">Yok oluş</h3>
-          <p class="genre">Dram, Aksiyon, Macera, Bilim kurgu, Korku</p>
-          <div class="movie-url">
-            <a href="/bird-box">
-              <button type="button" class="btn">Filme git</button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 col-lg-3 item">
-      <div class="box" style="background-image:url(static/img/bird.jpg)">
-        <div class="cover">
-          <h3 class="name">Kuş kafesi</h3>
-          <p class="genre">Dram, Aksiyon</p>
-          <div class="movie-url">
-            <a href="/bird-box">
-              <button type="button" class="btn">Filme git</button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 col-lg-3 item">
-      <div class="box" style="background-image:url(static/img/ann.jpg)">
-        <div class="cover">
-          <h3 class="name">Yok oluş</h3>
-          <p class="genre">Dram, Aksiyon, Macera, Bilim kurgu, Korku</p>
-          <div class="movie-url">
-            <a href="/bird-box">
-              <button type="button" class="btn">Filme git</button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+    {{/each}}
+    
 
   </div>
 </div>

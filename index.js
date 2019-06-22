@@ -16,6 +16,7 @@ import login from './routes/login';
 import logout from './routes/logout';
 import home from './routes/home';
 import addMovies from './routes/addMovies';
+import myMovies from './routes/myMovies';
 
 // Midddleware
 import isLogin from './middleware/isLogin';
@@ -77,18 +78,11 @@ app.use(parser.urlencoded({ extended: true }));
 app.use('/register', loginRedirect, register);
 app.use('/login', loginRedirect, login);
 app.use('/add', isLogin, addMovies);
+app.use('/movies', isLogin, myMovies);
 app.use('/logout', logout);
 app.use('/', home);
 
 
-app.get('/movies', isLogin, (request, response) => {
-  response.render('movies', {
-    title: 'Filmler',
-    login: (request.session.username) ? true : false,
-    username: request.session.username,
-    user_role: request.session.role
-  });
-});
 
 app.get('/users', isLogin, (request, response) => {
   response.render('users', {

@@ -38,9 +38,9 @@ addMoviesRoute.post('/', async (request, response) => {
 
     // Filmi kaydetme başarılı ise
     moviePromise.then(movie => {
-      // Filmi veritabanına kayıt ettikten sonra yüklenen filmi de kaydediyor. 
+      // Filmi veritabanına kayıt ettikten sonra yüklenen filmin resmini kaydediyor. 
       if(request.files) {
-        request.files.movie_img.mv('./uploads/image/', request.files.movie_img.name);
+        request.files.movie_img.mv('./public/img/movies/', request.files.movie_img.name);
       }
       
       response.redirect('/');
