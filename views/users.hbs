@@ -3,71 +3,26 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Kullanıcılar</th>
+          <th>Kullanıcı isimleri</th>
+          <th>Kullanıcı yetkisi</th>
           <th>İşlemler</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Admin</td>
-          <td><button class="btn btn-warning" type="button" style="margin-right: 10px;">Yetki
-              ver</button><button class="btn btn-info" type="button" style="margin-right: 10px;">Düzenle</button><button
-              class="btn btn-danger" type="button">Sil</button></td>
-        </tr>
-        <tr>
-          <td>User</td>
-          <td><button class="btn btn-warning" type="button" style="margin-right: 10px;">Yetki
-              ver</button><button class="btn btn-info" type="button" style="margin-right: 10px;">Düzenle</button><button
-              class="btn btn-danger" type="button">Sil</button></td>
-        </tr>
-        <tr>
-          <td>Admin</td>
-          <td><button class="btn btn-warning" type="button" style="margin-right: 10px;">Yetki
-              ver</button><button class="btn btn-info" type="button" style="margin-right: 10px;">Düzenle</button><button
-              class="btn btn-danger" type="button">Sil</button></td>
-        </tr>
-        <tr>
-          <td>Admin</td>
-          <td><button class="btn btn-warning" type="button" style="margin-right: 10px;">Yetki
-              ver</button><button class="btn btn-info" type="button" style="margin-right: 10px;">Düzenle</button><button
-              class="btn btn-danger" type="button">Sil</button></td>
-        </tr>
-        <tr>
-          <td>Admin</td>
-          <td><button class="btn btn-warning" type="button" style="margin-right: 10px;">Yetki
-              ver</button><button class="btn btn-info" type="button" style="margin-right: 10px;">Düzenle</button><button
-              class="btn btn-danger" type="button">Sil</button></td>
-        </tr>
-        <tr>
-          <td>Admin</td>
-          <td><button class="btn btn-warning" type="button" style="margin-right: 10px;">Yetki
-              ver</button><button class="btn btn-info" type="button" style="margin-right: 10px;">Düzenle</button><button
-              class="btn btn-danger" type="button">Sil</button></td>
-        </tr>
-        <tr>
-          <td>Admin</td>
-          <td><button class="btn btn-warning" type="button" style="margin-right: 10px;">Yetki
-              ver</button><button class="btn btn-info" type="button" style="margin-right: 10px;">Düzenle</button><button
-              class="btn btn-danger" type="button">Sil</button></td>
-        </tr>
-        <tr>
-          <td>Admin</td>
-          <td><button class="btn btn-warning" type="button" style="margin-right: 10px;">Yetki
-              ver</button><button class="btn btn-info" type="button" style="margin-right: 10px;">Düzenle</button><button
-              class="btn btn-danger" type="button">Sil</button></td>
-        </tr>
-        <tr>
-          <td>Admin</td>
-          <td><button class="btn btn-warning" type="button" style="margin-right: 10px;">Yetki
-              ver</button><button class="btn btn-info" type="button" style="margin-right: 10px;">Düzenle</button><button
-              class="btn btn-danger" type="button">Sil</button></td>
-        </tr>
-        <tr>
-          <td>Admin</td>
-          <td><button class="btn btn-warning" type="button" style="margin-right: 10px;">Yetki
-              ver</button><button class="btn btn-info" type="button" style="margin-right: 10px;">Düzenle</button><button
-              class="btn btn-danger" type="button">Sil</button></td>
-        </tr>
+
+        {{#each users}}
+          <tr>
+            <td>{{username}}</td>
+            <td>{{role}}</td>
+            <td>
+              <form method="post">
+                <button class="btn btn-warning" type="submit" name="permission" value="{{_id}}" style="margin-right: 10px;">Yetki ver</button>
+                <button class="btn btn-info" type="submit" name="edit" style="margin-right: 10px;">Düzenle</button>
+                <button class="btn btn-danger" name="user_delete" value="{{_id}}" type="submit">Sil</button></td>
+              </form>
+          </tr>
+        {{/each}}
+
       </tbody>
     </table>
   </div>
