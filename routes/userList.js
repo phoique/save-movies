@@ -7,8 +7,29 @@ const userListRoute = express.Router();
 
 userListRoute.get('/', (request, response) => {
 
-  // Tüm kullanıcılar
-  const users = userModel.find({});
+  // 10 tane kullanıcı sayfa 1
+  const users = userModel.paginate({}, { page: 1, limit: 10 });
+
+  users.then(user => {
+    console.log(user)
+    response.render('users', {
+      title: 'Kayıtlı kullanıcılar',
+      login: (request.session.username) ? true : false,
+      username: request.session.username,
+      user_role: request.session.role,
+      users: user.docs,
+      pages_number: (user.pages > 1) ? Array(user.pages).fill(0).map((e,i)=>i+1) : null
+    });
+  });
+
+  users.catch(error => console.log(error));
+
+});
+
+// Sayfa parametre olarak gelirse.
+userListRoute.get('/:page', (request, response) => {
+
+  const users = userModel.paginate({}, { page: request.params.page, limit: 10 });
 
   users.then(user => {
     response.render('users', {
@@ -16,7 +37,8 @@ userListRoute.get('/', (request, response) => {
       login: (request.session.username) ? true : false,
       username: request.session.username,
       user_role: request.session.role,
-      users: user
+      users: user.docs,
+      pages_number: (user.pages > 1) ? Array(user.pages).fill(0).map((e,i)=>i+1) : null
     });
   });
 
@@ -63,6 +85,47 @@ userListRoute.post('/', (request, response) => {
     response.redirect('/users');
   }
 
+});
+
+// Kullanıcıya işlemler yapıldığında gönderilen post bu sefer parametre şeklinde de post 
+// gönderilebiliyor. 
+userListRoute.post('/:page', (request, response) => {
+  
+  // İşlemlerin post yollanması
+  const { permission, user_delete } = request.body;
+
+  // Eğer yetki vermek istenirse
+  if(permission) {
+
+    // Yetki verilecek kullanıcı id ile bulunur ve role kısmı admin olur.
+    const perm_user = userModel.findOneAndUpdate(permission, { role: 'admin' }, {new: true} );
+
+    perm_user.then(user => {
+      response.redirect('/users');
+    });
+
+    perm_user.catch(error => console.log(error));
+
+  }
+
+  // Eğer kullanıcı silinecek ise
+  else if (user_delete) {
+
+    // Silinecek kullanıcı id ile bulunur ve silinir.
+    const delete_user = userModel.findOneAndDelete(user_delete);
+
+    delete_user.then(user => {
+      response.redirect('/users');
+    });
+
+    delete_user.catch(error => console.log(error));
+
+  }
+
+  // Farklı bir istek gelirse başka sayfaya yönlendir.
+  else {
+    response.redirect('/users');
+  }
 
 });
 

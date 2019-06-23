@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import paginate from 'mongoose-paginate';
+
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
@@ -22,5 +24,8 @@ const UserSchema = new Schema({
     required: true,
   }
 });
+
+// Sayfalama için gerekli eklenti.
+UserSchema.plugin(paginate);
 
 export default mongoose.model('users', UserSchema);
