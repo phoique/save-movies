@@ -18,6 +18,7 @@ import home from './routes/home';
 import addMovies from './routes/addMovies';
 import myMovies from './routes/myMovies';
 import userList from './routes/userList';
+import publicCheck from './routes/publicCheck';
 
 // Midddleware
 import isLogin from './middleware/isLogin';
@@ -85,18 +86,9 @@ app.use('/login', loginRedirect, login);
 app.use('/add', isLogin, addMovies);
 app.use('/movies', isLogin, myMovies);
 app.use('/users', isLogin, userList);
+app.use('/check', isLogin, publicCheck);
 app.use('/logout', logout);
 app.use('/', home);
-
-
-app.get('/published', isLogin, (request, response) => {
-  response.render('publishedMovies', { 
-    title: 'Filmleri yayınla',
-    login: (request.session.username) ? true : false,
-    username: request.session.username,
-    user_role: request.session.role
-  });
-});
 
 app.listen(process.env.PORT || 3000, () => {
     console.log(`Server started: ${process.env.PORT}`);

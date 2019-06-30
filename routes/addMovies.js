@@ -33,7 +33,8 @@ addMoviesRoute.post('/', async (request, response) => {
       genre,
       image_name: (request.files) ? request.files.movie_img.name : "default.jpg",
       content,
-      public_user: (public_user === "on") ? true : false
+      public_user: (public_user === "on") ? true : false,
+      public_check_admin: null
     });
 
     const moviePromise = addMovie.save();
