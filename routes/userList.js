@@ -11,7 +11,6 @@ userListRoute.get('/', (request, response) => {
   const users = userModel.paginate({}, { page: 1, limit: 10 });
 
   users.then(user => {
-    console.log(user)
     response.render('users', {
       title: 'Kayıtlı kullanıcılar',
       login: (request.session.username) ? true : false,
@@ -56,7 +55,7 @@ userListRoute.post('/', (request, response) => {
   if(permission) {
 
     // Yetki verilecek kullanıcı id ile bulunur ve role kısmı admin olur.
-    const perm_user = userModel.findOneAndUpdate(permission, { role: 'admin' }, {new: true} );
+    const perm_user = userModel.findByIdAndUpdate(permission, { role: 'admin' }, {new: true} );
 
     perm_user.then(user => {
       response.redirect('/users');
@@ -70,7 +69,7 @@ userListRoute.post('/', (request, response) => {
   else if (user_delete) {
 
     // Silinecek kullanıcı id ile bulunur ve silinir.
-    const delete_user = userModel.findOneAndDelete(user_delete);
+    const delete_user = userModel.findByIdAndDelete(user_delete);
 
     delete_user.then(user => {
       response.redirect('/users');
@@ -87,8 +86,6 @@ userListRoute.post('/', (request, response) => {
 
 });
 
-// Kullanıcıya işlemler yapıldığında gönderilen post bu sefer parametre şeklinde de post 
-// gönderilebiliyor. 
 userListRoute.post('/:page', (request, response) => {
   
   // İşlemlerin post yollanması
@@ -98,7 +95,7 @@ userListRoute.post('/:page', (request, response) => {
   if(permission) {
 
     // Yetki verilecek kullanıcı id ile bulunur ve role kısmı admin olur.
-    const perm_user = userModel.findOneAndUpdate(permission, { role: 'admin' }, {new: true} );
+    const perm_user = userModel.findByIdAndUpdate(permission, { role: 'admin' }, {new: true} );
 
     perm_user.then(user => {
       response.redirect('/users');
@@ -112,7 +109,7 @@ userListRoute.post('/:page', (request, response) => {
   else if (user_delete) {
 
     // Silinecek kullanıcı id ile bulunur ve silinir.
-    const delete_user = userModel.findOneAndDelete(user_delete);
+    const delete_user = userModel.findByIdAndDelete(user_delete);
 
     delete_user.then(user => {
       response.redirect('/users');

@@ -66,6 +66,10 @@ hds.registerHelper('if_equals', function (lvalue, operator, rvalue, options) {
 
 });
 
+hds.registerHelper('indexNo', function(value) {
+  return value + 1;
+});
+
 app.engine('hbs', settings.engine);
 app.set('view engine', 'hbs');
 
