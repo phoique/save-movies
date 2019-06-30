@@ -25,7 +25,7 @@ myMoviesRoute.get('/', (request, response) => {
         user_role: request.session.role,
         movies: movie.docs,
         // sayfa numarası 2 veya büyük ise 1,2,3.. numaralar çıkıyor.
-        pages_number: (movies.pages >= 2) ? Array(movie.pages).fill(0).map((e,i)=>i+1) : null
+        pages_number: (movie.pages > 1) ? Array(movie.pages).fill(0).map((e,i)=>i+1) : null
       });
     });
     movies.catch(error => console.log(error));
@@ -54,7 +54,7 @@ myMoviesRoute.get('/:page', (request, response) => {
         username: request.session.username,
         user_role: request.session.role,
         movies: movie.docs,
-        pages_number: (movies.pages >= 2) ? Array(movie.pages).fill(0).map((e,i)=>i+1) : null
+        pages_number: (movie.pages > 1) ? Array(movie.pages).fill(0).map((e,i)=>i+1) : null
       });
     });
     movies.catch(error => console.log(error));

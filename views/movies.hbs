@@ -23,11 +23,13 @@
 
   </div>
 
-  <nav>
-    <ul class="pagination justify-content-center mt-3">
-      {{#each pages_number}}
+ <div class="row justify-content-center">
+    <nav>
+      <ul class="pagination">
+        {{#each pages_number}}
         <li class="page-item"><a class="page-link" href="/movies/{{ this }}">{{ this }}</a></li>
-      {{/each}}
-    </ul>
-  </nav>
+        {{/each}}
+      </ul>
+    </nav>
+  </div>
 </div>
