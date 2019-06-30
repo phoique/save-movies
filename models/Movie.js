@@ -22,8 +22,11 @@ const MovieSchema = new Schema({
     type: String,
     required: true,
   },
-  public: {
+  public_user: {
     type: Boolean,
+  },
+  public_check_admin: {
+    type: Boolean
   }
 });
 

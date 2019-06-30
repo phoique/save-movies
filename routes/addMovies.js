@@ -17,7 +17,7 @@ addMoviesRoute.get('/', (request, response) => {
 
 addMoviesRoute.post('/', async (request, response) => {
 
-  const { name, genre, content } = request.body;
+  const { name, genre, content, public_user } = request.body;
 
   // Kullanıcı bilgileri buradan id alacağız.
   const user = userModel.findOne({username: request.session.username});
@@ -25,13 +25,15 @@ addMoviesRoute.post('/', async (request, response) => {
   user.then(user_id => {
 
     // Filmi kaydetme
+    // public_user checkbox'ından gelen değer eğer işaretli ise on geliyor
+    // işaret yok ise değer gelmiyor haliyle false oluyor.
     const addMovie = new movieModel({
       user_id,
       name,
       genre,
       image_name: (request.files) ? request.files.movie_img.name : "default.jpg",
       content,
-      public: false
+      public_user: (public_user === "on") ? true : false
     });
 
     const moviePromise = addMovie.save();

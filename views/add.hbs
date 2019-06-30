@@ -1,7 +1,8 @@
 <div class="movie-add-clean">
   <form method="post" enctype="multipart/form-data">
     <h2 class="text-center">Film Ekle</h2>
-    <div class="form-group"><input class="form-control" type="text" name="name" placeholder="Film adı" required maxlength="20"></div>
+    <div class="form-group"><input class="form-control" type="text" name="name" placeholder="Film adı" required
+        maxlength="20"></div>
     <div class="mt-2 mb-2">
       <label>Film türü: </label>
       <select class="selectpicker" name="genre" multiple data-live-search="true">
@@ -29,6 +30,13 @@
     </div>
     <div class="form-group form-mt"><textarea class="form-control" rows="14" name="content"
         placeholder="Film hakkında kısa özet" required></textarea>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" name="public_user" type="checkbox">Film herkes tarafından görülsün.
+        </label>
+      </div>
     </div>
     <div class="form-group"><button class="btn btn-primary text-center" type="submit">Kaydet</button></div>
   </form>
