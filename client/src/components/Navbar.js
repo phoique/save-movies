@@ -3,26 +3,26 @@ import React from 'react';
 function Navbar() {
   return (
     <div>
-      <nav class="navbar navbar-expand-sm fixed-top navbar-light mt-2">
-        <div class="container">
-          <a class="navbar-brand font-weight-bold" href="/"><h4>Navbar</h4></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
-              <span class="navbar-toggler-icon"></span>
+      <nav className="navbar navbar-expand-sm fixed-top navbar-light mt-2">
+        <div className="container">
+          <a className="navbar-brand font-weight-bold" href="/"><h4>Navbar</h4></a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
+              <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbar1">
-              <ul class="navbar-nav">
+          <div className="collapse navbar-collapse" id="navbar1">
+              <ul className="navbar-nav">
 
               </ul>
-              <ul class="navbar-nav ml-auto">
-                  <li class="nav-item mr-2 mt-2">
+              <ul className="navbar-nav ml-auto">
+                  <li className="nav-item mr-2 mt-2">
                     <a href="/register">
-                      <button type="button" class="btn btn-success navbar-rad">Kayıt Ol</button>
+                      <button type="button" className="btn btn-success navbar-rad">Kayıt Ol</button>
                     </a>
                     
                   </li>
-                  <li class="nav-item mt-2">
+                  <li className="nav-item mt-2">
                     <a href="/login">
-                      <button type="button" class="btn btn-outline-primary navbar-rad">Giriş Yap</button>
+                      <button type="button" className="btn btn-outline-primary navbar-rad">Giriş Yap</button>
                     </a>
                   </li>
               </ul>

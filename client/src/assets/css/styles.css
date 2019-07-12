@@ -1,3 +1,15 @@
 .navbar-rad {
   border-radius: 30px;
 }
+
+.header-main {
+padding: 150px;
+}
+
+.header-text {
+  font-size: 20px;
+}
+
+.header-register {
+  padding: 10px 20px;
+}
