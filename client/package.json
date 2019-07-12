@@ -1,0 +1,46 @@
+{
+  "name": "save-movies-client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Phoique/save-movies.git"
+  },
+  "keywords": [
+    "save",
+    "movies",
+    "react"
+  ],
+  "author": "Phoique <official.phoique@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Phoique/save-movies/issues"
+  },
+  "homepage": "https://github.com/Phoique/save-movies#readme",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

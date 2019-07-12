@@ -47,7 +47,6 @@ myMoviesRoute.get('/:page', (request, response) => {
     const movies = movieModel.paginate({ user_id }, { page: request.params.page, limit: 12 });
 
     movies.then(movie => {
-      console.log(movie.docs)
       response.render('movies', {
         title: 'Filmler',
         login: (request.session.username) ? true : false,
