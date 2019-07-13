@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
+import MyMovies from './pages/MyMovies';
 
 // CSS
 import './assets/css/styles.css';
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
           <Route path ="/register" exact component={Register} />
+          <Route path ="/mymovies" exact component={MyMovies} />
         </Switch>
       </Router>
     </div>

@@ -3,7 +3,7 @@ import React from 'react';
 function Navbar() {
   return (
     <div>
-      <nav className="navbar navbar-expand-sm fixed-top navbar-light mt-2">
+      <nav className="navbar navbar-expand-sm navbar-light mt-2">
         <div className="container">
           <a className="navbar-brand font-weight-bold" href="/"><h4>Navbar</h4></a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
