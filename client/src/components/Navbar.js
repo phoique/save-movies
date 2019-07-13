@@ -10,22 +10,36 @@ function Navbar() {
               <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbar1">
-              <ul className="navbar-nav">
-
-              </ul>
-              <ul className="navbar-nav ml-auto">
-                  <li className="nav-item mr-2 mt-2">
-                    <a href="/register">
-                      <button type="button" className="btn btn-success navbar-rad">Kayıt Ol</button>
-                    </a>
-                    
-                  </li>
-                  <li className="nav-item mt-2">
-                    <a href="/login">
-                      <button type="button" className="btn btn-outline-primary navbar-rad">Giriş Yap</button>
-                    </a>
-                  </li>
-              </ul>
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a class="nav-link" href="/">Anasayfa</a>
+              </li>
+              <li className="nav-item">
+                <a class="nav-link" href="/mymovies">Filmlerim</a>
+              </li>
+              <li className="nav-item">
+                <a class="nav-link" href="/add">Film Ekle</a>
+              </li>
+              <li className="nav-item">
+                <a class="nav-link" href="/users">Kullanıcılar</a>
+              </li>
+              <li className="nav-item">
+                <a class="nav-link" href="/checks">Onaylanacak filmler</a>
+              </li>
+            </ul>
+            <ul className="navbar-nav ml-auto">
+                <li className="nav-item mr-2 mt-2">
+                  <a href="/register">
+                    <button type="button" className="btn btn-success navbar-rad">Kayıt Ol</button>
+                  </a>
+                  
+                </li>
+                <li className="nav-item mt-2">
+                  <a href="/login">
+                    <button type="button" className="btn btn-outline-primary navbar-rad">Giriş Yap</button>
+                  </a>
+                </li>
+            </ul>
           </div>
         </div>
       </nav>
