@@ -10,6 +10,7 @@ import MyMovies from './pages/MyMovies';
 import Add from './pages/Add';
 import Users from './pages/Users';
 import PublicCheck from './pages/PublicCheck';
+import Logout from './pages/Logout';
 
 // Utils
 import PrivateRoute from './utils/PrivateRoute';
@@ -25,6 +26,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/logout" exact component={Logout} />
           <IsLoginRoute path="/login" exact component={Login} />
           <IsLoginRoute path ="/register" exact component={Register} />
           <PrivateRoute path ="/mymovies" exact component={MyMovies} />
