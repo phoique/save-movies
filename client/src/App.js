@@ -10,6 +10,7 @@ import MyMovies from './pages/MyMovies';
 import Add from './pages/Add';
 import Users from './pages/Users';
 import PublicCheck from './pages/PublicCheck';
+import PrivateRoute from './utils/PrivateRoute';
 
 // CSS
 import './assets/css/styles.css';
@@ -23,10 +24,10 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
           <Route path ="/register" exact component={Register} />
-          <Route path ="/mymovies" exact component={MyMovies} />
-          <Route path ="/add" exact component={Add} />
-          <Route path ="/users" exact component={Users} />
-          <Route path ="/checks" exact component={PublicCheck} />
+          <PrivateRoute path ="/mymovies" exact component={MyMovies} />
+          <PrivateRoute path ="/add" exact component={Add} />
+          <PrivateRoute path ="/users" exact component={Users} />
+          <PrivateRoute path ="/checks" exact component={PublicCheck} />
         </Switch>
       </Router>
     </div>
