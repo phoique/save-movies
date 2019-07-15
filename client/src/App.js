@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import MyMovies from './pages/MyMovies';
 import Add from './pages/Add';
 import Users from './pages/Users';
+import PublicCheck from './pages/PublicCheck';
 
 // CSS
 import './assets/css/styles.css';
@@ -25,6 +26,7 @@ function App() {
           <Route path ="/mymovies" exact component={MyMovies} />
           <Route path ="/add" exact component={Add} />
           <Route path ="/users" exact component={Users} />
+          <Route path ="/checks" exact component={PublicCheck} />
         </Switch>
       </Router>
     </div>
