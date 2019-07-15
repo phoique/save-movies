@@ -14,18 +14,25 @@ function Navbar() {
               <li className="nav-item">
                 <a className="nav-link" href="/">Anasayfa</a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/mymovies">Filmlerim</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/add">Film Ekle</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/users">Kullanıcılar</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/checks">Onaylanacak filmler</a>
-              </li>
+              {
+                (localStorage.getItem('token') === null) ? 
+                null 
+                : 
+                <ul className="navbar-nav">
+                  <li className="nav-item">
+                    <a className="nav-link" href="/mymovies">Filmlerim</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="/add">Film Ekle</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="/users">Kullanıcılar</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="/checks">Onaylanacak filmler</a>
+                  </li>
+                </ul>
+              }
             </ul>
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item mr-2 mt-2">
