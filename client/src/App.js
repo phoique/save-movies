@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
 import MyMovies from './pages/MyMovies';
+import Add from './pages/Add';
 
 // CSS
 import './assets/css/styles.css';
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" exact component={Login} />
           <Route path ="/register" exact component={Register} />
           <Route path ="/mymovies" exact component={MyMovies} />
+          <Route path ="/add" exact component={Add} />
         </Switch>
       </Router>
     </div>

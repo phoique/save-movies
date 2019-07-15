@@ -12,19 +12,19 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbar1">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a class="nav-link" href="/">Anasayfa</a>
+                <a className="nav-link" href="/">Anasayfa</a>
               </li>
               <li className="nav-item">
-                <a class="nav-link" href="/mymovies">Filmlerim</a>
+                <a className="nav-link" href="/mymovies">Filmlerim</a>
               </li>
               <li className="nav-item">
-                <a class="nav-link" href="/add">Film Ekle</a>
+                <a className="nav-link" href="/add">Film Ekle</a>
               </li>
               <li className="nav-item">
-                <a class="nav-link" href="/users">Kullanıcılar</a>
+                <a className="nav-link" href="/users">Kullanıcılar</a>
               </li>
               <li className="nav-item">
-                <a class="nav-link" href="/checks">Onaylanacak filmler</a>
+                <a className="nav-link" href="/checks">Onaylanacak filmler</a>
               </li>
             </ul>
             <ul className="navbar-nav ml-auto">
