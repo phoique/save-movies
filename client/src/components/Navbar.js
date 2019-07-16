@@ -1,6 +1,16 @@
 import React from 'react';
+import decode from 'jwt-decode';
 
 function Navbar() {
+
+  // Eğer localstorage token boş ise değer null oluyor dolu ise kullanıcı bilgilerini
+  // bir object içinde dönüyor. Kullanıcı adı ve rolü şeklinde.
+  const user_info = localStorage.getItem('token') ?
+    decode(localStorage.getItem('token') || null) 
+    : 
+    null;
+
+
   return (
     <div>
       <nav className="navbar navbar-expand-sm navbar-light mt-2">
@@ -25,12 +35,21 @@ function Navbar() {
                   <li className="nav-item">
                     <a className="nav-link" href="/add">Film Ekle</a>
                   </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="/users">Kullanıcılar</a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="/checks">Onaylanacak filmler</a>
-                  </li>
+
+                  {
+                    (user_info.user_role !== "admin") ? null :
+                    <li className="nav-item">
+                      <a className="nav-link" href="/users">Kullanıcılar</a>
+                    </li>
+                  }
+
+                  {
+                    (user_info.user_role !== "admin") ? null :
+                    <li className="nav-item">
+                      <a className="nav-link" href="/checks">Onaylanacak filmler</a>
+                    </li>
+                  }
+                  
                 </ul>
               }
             </ul>
@@ -56,7 +75,9 @@ function Navbar() {
                   <li className="nav-item dropdown" style={{listStyleType: 'none'}}>
                     <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">
-                        Username
+                        {
+                          user_info ? user_info.username : "Kullanıcı"
+                        }
                     </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                       <a className="dropdown-item" href="/add">Film Ekle</a>
