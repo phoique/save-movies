@@ -1,11 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import hbsExpress from 'express-handlebars';
-import hds from 'handlebars';
 import parser from 'body-parser';
 import session from 'express-session';
 import fileUpload from 'express-fileupload';
-import path from 'path';
 
 // Datebase
 import datebaseConnect from './helper/datebase';
@@ -45,37 +42,6 @@ app.use(fileUpload({
     fileSize: 2 * 1024 * 1024 * 1024 //2MB max file(s) size
 },
 }));
-
-// Template engine. Default layout. layout.hbs
-const settings = hbsExpress.create({
-  defaultLayout: 'layout', 
-  extname: 'hbs'
-});
-
-// if_equals(x '===' y)
-hds.registerHelper('if_equals', function (lvalue, operator, rvalue, options) {
-  var operators, result;
-  operators = {
-      '===': function (l, r) { return l === r; },
-  };
-  result = operators[operator](lvalue, rvalue);
-  if (result) {
-      return options.fn(this);
-  } else {
-      return options.inverse(this);
-  }
-
-});
-
-hds.registerHelper('indexNo', function(value) {
-  return value + 1;
-});
-
-app.engine('hbs', settings.engine);
-app.set('view engine', 'hbs');
-
-// Static file css, js...
-app.use('/static', express.static('public'));
 
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
