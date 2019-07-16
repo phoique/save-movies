@@ -17,16 +17,18 @@ function Register() {
     });
   }
 
-  const passwordsMatch = () => {
+  const passwordsMatch = async () => {
     if(passwordx.password === passwordx.password_repeat) {
-      axios({
+      
+      await axios({
         method: 'post',
         url: 'http://localhost:3001/api/register',
         data: {
           username: passwordx.username,
           password: passwordx.password
         }
-      }).then(data => console.log(data))
+      }).then(data => localStorage.setItem('token', data.data.token));
+
     }
     else {
       console.log('Yanlış.');
@@ -62,7 +64,7 @@ function Register() {
             <input className="form-control" type="password" name="password_repeat" onChange={event => changePassword(event)} placeholder="Tekrar şifre" required minLength="5" />
           </div>
           <div className="form-group">
-            <button className="btn btn-primary btn-block" onClick={() => passwordsMatch()} type="button">Kayıt Ol</button>
+            <button className="btn btn-primary btn-block" onClick={() => passwordsMatch()} type="submit">Kayıt Ol</button>
           </div>
           <p className="already">Hesabın var mı o zaman <a href="/login">giriş yap</a>.</p>
         </form>
