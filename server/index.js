@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import parser from 'body-parser';
 import session from 'express-session';
 import fileUpload from 'express-fileupload';
+import cors from 'cors';
 
 // Datebase
 import datebaseConnect from './helper/datebase';
@@ -18,7 +19,7 @@ import userList from './routes/userList';
 import publicCheck from './routes/publicCheck';
 
 // Midddleware
-import isLogin from './middleware/isLogin';
+import verifyToken from './middleware/verifyToken';
 import loginRedirect from './middleware/loginRedirect';
 
 // Dotenv run
@@ -35,6 +36,9 @@ app.use(session({
   saveUninitialized: true
 }));
 
+// Cors.
+app.use(cors());
+
 // File upload
 app.use(fileUpload({
   createParentPath: true,
@@ -47,14 +51,14 @@ app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
 // Use route
-app.use('/register', loginRedirect, register);
-app.use('/login', loginRedirect, login);
-app.use('/add', isLogin, addMovies);
-app.use('/movies', isLogin, myMovies);
-app.use('/users', isLogin, userList);
-app.use('/check', isLogin, publicCheck);
-app.use('/logout', logout);
-app.use('/', home);
+app.use('/api/register', loginRedirect, register);
+app.use('/api/login', loginRedirect, login);
+app.use('/api/add', verifyToken, addMovies);
+app.use('/api/movies', verifyToken, myMovies);
+app.use('/api/users', verifyToken, userList);
+app.use('/api/check', verifyToken, publicCheck);
+app.use('/api/logout', logout);
+app.use('/api/', home);
 
 app.listen(process.env.PORT || 3000, () => {
     console.log(`Server started: ${process.env.PORT}`);

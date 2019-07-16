@@ -1,58 +1,68 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
 // Models import
 import UserModel from '../models/User';
 
 const registerRoute = express.Router();
 
-// Register view
 registerRoute.get('/', (request, reponse) => {
-  reponse.render('register', {
-    title: 'Kayıt ol',
-    login: (request.session.username) ? true : false,
-    username: request.session.username,
-    user_role: request.session.role
+  reponse.json({
+    status: 200
   });
 });
 
-// Register post
+// Kullanıcı kayıt post route.
 registerRoute.post('/', (request, response) => {
-  const { username, password, password_repeat } = request.body;
+  const { username, password } = request.body;
 
-  if (password !== password_repeat) {
-    response.redirect('/register');
-  } else {
+  const hashPromise = bcrypt.hash(password, 10);
 
-    const hashPromise = bcrypt.hash(password, 10);
+  // Girdiği şifreyi bcrypt ile şifreliyoruz.
+  hashPromise.then(
+    password => {
+      // Yeni kullanıcı.
+      const newUser = new UserModel({
+        username,
+        password,
+        role: 'user'
+      });
 
-    // Password hash success
-    hashPromise.then(
-      password => {
+      // Kullanıcı kaydı promise.
+      const userPromise = newUser.save();
 
-        const newUser = new UserModel({
-          username,
-          password,
-          role: 'user'
+      // başarılı olursa.
+      userPromise.then((user) => {
+        request.session.username = username;
+        request.session.role = 'user';
+        const payload = {
+          username: username,
+          user_role: 'user'
+        };
+
+        // Kullanıcıyı giriş yaptırıyoruz.
+        const token = jwt.sign(payload, process.env.SECRET_KEY, {
+          expiresIn: 720 // 12 saat boyunca geçerli token.
         });
-
-        // User save
-        const userPromise = newUser.save();
-
-        // Register success
-        userPromise.then((user) => {
-          request.session.username = username;
-          request.session.role = 'user';
-          response.redirect('/');
+        response.json({
+          status: 200,
+          newUser: user,
+          token: token
         });
-        userPromise.catch((error) => console.log(error));
+      });
 
-      }
-    );
+      userPromise.catch((error) => response.json({
+        error: error
+      }));
 
-    // Password hash error
-    hashPromise.catch(error => console.log('Password hash error:', error));
+    }
+  );
 
-  }
+  // Password hash error
+  hashPromise.catch(error => response.json({
+    error: error
+  }));
 
 });
 
