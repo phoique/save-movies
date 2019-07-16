@@ -11,6 +11,7 @@ registerRoute.get('/', (request, reponse) => {
   reponse.json({
     status: 200
   });
+  console.log(request.decode)
 });
 
 // Kullanıcı kayıt post route.
@@ -34,13 +35,10 @@ registerRoute.post('/', (request, response) => {
 
       // başarılı olursa.
       userPromise.then((user) => {
-        request.session.username = username;
-        request.session.role = 'user';
         const payload = {
           username: username,
           user_role: 'user'
         };
-
         // Kullanıcıyı giriş yaptırıyoruz.
         const token = jwt.sign(payload, process.env.SECRET_KEY, {
           expiresIn: 720 // 12 saat boyunca geçerli token.

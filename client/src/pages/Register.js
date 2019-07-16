@@ -3,36 +3,36 @@ import axios from 'axios';
 
 function Register() {
 
-  const [passwordx, setPassword] = useState({
+  const [userValues, setUserValues] = useState({
     username: null,
     password: null,
     password_repeat: null,
     password_match_status: true
   });
 
-  const changePassword = ({ target }) => {
-    setPassword({
-      ...passwordx,
+  const changeValues = ({ target }) => {
+    setUserValues({
+      ...userValues,
       [target.name]: target.value
     });
   }
 
   const passwordsMatch = async () => {
-    if(passwordx.password === passwordx.password_repeat) {
+    if(userValues.password === userValues.password_repeat) {
       
       await axios({
         method: 'post',
         url: 'http://localhost:3001/api/register',
         data: {
-          username: passwordx.username,
-          password: passwordx.password
+          username: userValues.username,
+          password: userValues.password
         }
       }).then(data => localStorage.setItem('token', data.data.token));
 
     }
     else {
       console.log('Yanlış.');
-      setPassword({
+      setUserValues({
         password_match_status: false
       });
     }
@@ -47,7 +47,7 @@ function Register() {
             <strong>Hesap oluştur</strong>
           </h2>
           {
-            (passwordx.password_match_status) ? 
+            (userValues.password_match_status) ? 
             null 
             : 
             <div className="alert alert-danger" role="alert">
@@ -55,13 +55,13 @@ function Register() {
             </div>
           }
           <div className="form-group">
-            <input className="form-control" type="text" name="username" onChange={event => changePassword(event)} placeholder="Kullanıcı adı" required minLength="4" maxLength="10" />
+            <input className="form-control" type="text" name="username" onChange={event => changeValues(event)} placeholder="Kullanıcı adı" required minLength="4" maxLength="10" />
           </div>
           <div className="form-group">
-            <input className="form-control" type="password" name="password" onChange={event => changePassword(event)} placeholder="Şifre" required minLength="5" />
+            <input className="form-control" type="password" name="password" onChange={event => changeValues(event)} placeholder="Şifre" required minLength="5" />
           </div>
           <div className="form-group">
-            <input className="form-control" type="password" name="password_repeat" onChange={event => changePassword(event)} placeholder="Tekrar şifre" required minLength="5" />
+            <input className="form-control" type="password" name="password_repeat" onChange={event => changeValues(event)} placeholder="Tekrar şifre" required minLength="5" />
           </div>
           <div className="form-group">
             <button className="btn btn-primary btn-block" onClick={() => passwordsMatch()} type="submit">Kayıt Ol</button>

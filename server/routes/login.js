@@ -1,17 +1,15 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
 // Models import
 import UserModel from '../models/User';
 
 const loginRoute = express.Router();
 
-// User login view
 loginRoute.get('/', (request, response) => {
-  response.render('login', {
-    title: 'Giriş yap',
-    login: (request.session.username) ? true : false,
-    username: request.session.username,
-    user_role: request.session.role
+  response.json({
+    status: 200
   });
 });
 
@@ -22,11 +20,15 @@ loginRoute.post('/', async (request, response) => {
   await UserModel.findOne({ username }, (error, user) => {
     // Bir hata varsa.
     if (error) {
-      console.log(error);
+      response.json({
+        error: error
+      });
     } 
     // Kullanıcı yoksa
     else if (!user) {
-      console.log('Böyle bir kullanıcı yoktur.');
+      response.json({
+        error: 'Böyle bir kullanıcı yoktur.'
+      });
     }
     // Kullanıcı varsa yazdığı şifreyi hashleyip veritabanı ile karşılaştırılması.
     else {
@@ -36,17 +38,32 @@ loginRoute.post('/', async (request, response) => {
       passCheck.then(result => {
 
         if(!result) {
-          console.log('Şifreniz yanlıştır.');
+          response.json({
+            error: 'Şifreniz yanlıştır.'
+          });
         }
         else {
-          request.session.username = user.username;
-          request.session.role = user.role;
-          response.redirect('/');
+
+          const payload = {
+            username: user.username,
+            user_role: user.role
+          };
+
+          const token = jwt.sign(payload, process.env.SECRET_KEY, {
+            expiresIn: 720 // 12 saat boyunca geçerli token.
+          });
+
+          response.json({
+            status: 200,
+            token: token
+          });
         }
         
       });
 
-      passCheck.catch(error => console.log("Error:",error));
+      passCheck.catch(error => response.json({
+        error: error
+      }));
 
     }
   });
