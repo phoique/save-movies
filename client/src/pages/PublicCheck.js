@@ -3,31 +3,31 @@ import defaultIMG from '../assets/img/movies/default.jpg';
 
 function PublicCheck() {
   return (
-    <div class="movie-grid">
-      <div class="intro">
-        <h2 class="text-center">Herkese açık onaylanacak filmler</h2>
+    <div className="movie-grid">
+      <div className="intro">
+        <h2 className="text-center">Herkese açık onaylanacak filmler</h2>
       </div>
-      <div class="row">
-        <div class="col-md-4 col-lg-3 item">
-          <div class="box" style={{ backgroundImage: `url(${defaultIMG})`}}>
-            <div class="cover">
-              <h3 class="name">Bird Box</h3>
-              <p class="genre">
+      <div className="row">
+        <div className="col-md-4 col-lg-3 item">
+          <div className="box" style={{ backgroundImage: `url(${defaultIMG})`}}>
+            <div className="cover">
+              <h3 className="name">Bird Box</h3>
+              <p className="genre">
                 Aksiyon, Macera
               </p>
-              <div class="movie-url">
-                <button class="btn btn-danger" name="public_true" value="xxx" type="submit">Yayınla</button>
-                <button class="btn btn-info" type="submit">Düzenle</button>
-                <button class="btn btn-primary" name="public_false" type="submit" value="xxx">Kaldır</button>
+              <div className="movie-url">
+                <button className="btn btn-danger" name="public_true" value="xxx" type="submit">Yayınla</button>
+                <button className="btn btn-info" type="submit">Düzenle</button>
+                <button className="btn btn-primary" name="public_false" type="submit" value="xxx">Kaldır</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row justify-content-center">
+      <div className="row justify-content-center">
         <nav>
-          <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="/">1</a></li>
+          <ul className="pagination">
+            <li className="page-item"><a className="page-link" href="/">1</a></li>
           </ul>
         </nav>
       </div>

@@ -15,6 +15,7 @@ import Logout from './pages/Logout';
 // Utils
 import PrivateRoute from './utils/PrivateRoute';
 import IsLoginRoute from './utils/IsLoginRoute';
+import AdminRoute from './utils/AdminRoute';
 
 // CSS
 import './assets/css/styles.css';
@@ -31,8 +32,8 @@ function App() {
           <IsLoginRoute path ="/register" exact component={Register} />
           <PrivateRoute path ="/mymovies" exact component={MyMovies} />
           <PrivateRoute path ="/add" exact component={Add} />
-          <PrivateRoute path ="/users" exact component={Users} />
-          <PrivateRoute path ="/checks" exact component={PublicCheck} />
+          <AdminRoute path ="/users" exact component={Users} />
+          <AdminRoute path ="/checks" exact component={PublicCheck} />
         </Switch>
       </Router>
     </div>
