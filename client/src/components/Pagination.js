@@ -6,13 +6,13 @@ function Pagination({ pages, url }) {
       <nav>
         <ul className="pagination">
           {
-            (pages > 1) ? Array(pages).map(
-              number => 
-              <li className="page-item">
-                <a className="page-link" href="/">
-                { number + 1 }
-                </a>
-              </li>) : null
+            Array(pages).fill(0).map(
+            (number, index) => 
+            <li className="page-item" key={index}>
+              <a className="page-link" href={`/${ url }/${index+1}`}>
+              { index + 1 }
+              </a>
+            </li>)
           }
         </ul>
       </nav>

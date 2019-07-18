@@ -13,7 +13,7 @@ function MyMovies() {
     : 
     null;
 
-  const [movies, setMovies] = useState({ movies: [] });
+  const [movies, setMovies] = useState({ movies: [], pages: null });
 
   useEffect(() => {
 
@@ -28,10 +28,17 @@ function MyMovies() {
       }
     });
 
-    moviesData.then(movies => setMovies({ movies: movies.data.movies }));
+    moviesData.then(movies => 
+      setMovies({ 
+        movies: movies.data.movies, 
+        pages: movies.data.pages_number 
+      }));
+
     moviesData.catch(error => console.log(error));
   }, []);
   
+  console.log(movies);
+
   return (
     <div className="movie-grid mt-4">
       <div className="row"> 
@@ -45,7 +52,13 @@ function MyMovies() {
           />)
         }
       </div>
-      <Pagination pages = { 3 } />
+      {
+        (movies.pages > 1) ? 
+          <Pagination pages= {movies.pages} url={'mymovies'} /> 
+        : 
+          null
+      }
+      
     </div>
   );
 }
