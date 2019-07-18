@@ -49,9 +49,7 @@ loginRoute.post('/', async (request, response) => {
             user_role: user.role
           };
 
-          const token = jwt.sign(payload, process.env.SECRET_KEY, {
-            expiresIn: 720 // 12 saat boyunca geçerli token.
-          });
+          const token = jwt.sign(payload, process.env.SECRET_KEY);
 
           response.json({
             status: 200,

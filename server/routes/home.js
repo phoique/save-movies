@@ -4,7 +4,7 @@ const homeRoute = express.Router();
 
 homeRoute.get('/', (request, response) => {
   response.json({
-    status: true
+    status: 200
   });
 });
 

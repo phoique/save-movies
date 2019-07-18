@@ -11,12 +11,14 @@ function isLogin(request, response, next) {
 
       if(error) {
         response.json({
-          error: error
+          error: error,
+          message: 'Token doğrulanmadı.'
         });
       }
 
       else {
         request.decode = decoded;
+        next();
       }
 
     });
