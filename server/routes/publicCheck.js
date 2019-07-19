@@ -10,18 +10,14 @@ checkRoute.get('/', (request, response) => {
 
   check_movies.then(movies => {
 
-    response.render('publicCheck', { 
-      title: 'Filmleri yayınla',
-      login: (request.session.username) ? true : false,
-      username: request.session.username,
-      user_role: request.session.role,
+    response.json({ 
       movies: movies.docs,
-      pages_number: (movies.pages > 1) ? Array(movies.pages).fill(0).map((e,i)=>i+1) : null
+      pages_number: movies.pages
     });
 
   });
 
-  check_movies.catch(error => console.log(error));
+  check_movies.catch(error => response.json({error}));
 
 });
 
@@ -32,18 +28,14 @@ checkRoute.get('/:page', (request, response) => {
 
   check_movies.then(movies => {
 
-    response.render('publicCheck', { 
-      title: 'Filmleri yayınla',
-      login: (request.session.username) ? true : false,
-      username: request.session.username,
-      user_role: request.session.role,
+    response.json({ 
       movies: movies.docs,
-      pages_number: (movies.pages > 1) ? Array(movies.pages).fill(0).map((e,i)=>i+1) : null
+      pages_number: movies.pages
     });
 
   });
 
-  check_movies.catch(error => console.log(error));
+  check_movies.catch(error => response.json({error}));
 
 });
 
@@ -56,59 +48,33 @@ checkRoute.post('/', (request, response) => {
 
     const public_movie_true = movieModel.findByIdAndUpdate(public_true, { public_check_admin: true }, { new: true } );
 
-    public_movie_true.then(user => {
-      response.redirect('/check');
+    public_movie_true.then(movie => {
+      response.json({
+        publicMovie: movie
+      });
     });
 
-    public_movie_true.catch(error => console.log(error));
+    public_movie_true.catch(error => response.json({error}));
 
   }
   else if(public_false) {
 
     const public_movie_false = movieModel.findByIdAndUpdate(public_false, { public_check_admin: false }, { new: true } );
 
-    public_movie_false.then(user => {
-      response.redirect('/check');
+    public_movie_false.then(movie => {
+      response.json({
+        publicMovie: movie
+      });
     });
 
-    public_movie_false.catch(error => console.log(error));
+    public_movie_false.catch(error => response.json({error}));
 
   }
   else {
-    response.redirect('/check');
-  }
-
-});
-
-checkRoute.post('/:page', (request, response) => {
-  // true olanlar admin tarafından onaylanmış artık listelenen filmler.
-  // id değeri geliyor.
-  const { public_true, public_false } = request.body;
-
-  if(public_true) {
-
-    const public_movie_true = movieModel.findByIdAndUpdate(public_true, { public_check_admin: true }, { new: true } );
-
-    public_movie_true.then(user => {
-      response.redirect('/check');
+    response.json({
+      status: 404,
+      error: 'Böyle bir istek yoktur.'
     });
-
-    public_movie_true.catch(error => console.log(error));
-
-  }
-  else if(public_false) {
-
-    const public_movie_false = movieModel.findByIdAndUpdate(public_false, { public_check_admin: false }, { new: true } );
-
-    public_movie_false.then(user => {
-      response.redirect('/check');
-    });
-
-    public_movie_false.catch(error => console.log(error));
-
-  }
-  else {
-    response.redirect('/check');
   }
 
 });

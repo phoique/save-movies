@@ -57,7 +57,7 @@ app.use('/api/login', loginRedirect, login);
 app.use('/api/add', verifyToken, addMovies);
 app.use('/api/movies', verifyToken, myMovies);
 app.use('/api/users', adminRoute, userList);
-app.use('/api/check', adminRoute, publicCheck);
+app.use('/api/checks', adminRoute, publicCheck);
 app.use('/api/logout', logout);
 app.use('/api/', home);
 
