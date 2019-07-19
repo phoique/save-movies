@@ -8,7 +8,7 @@ function MoviesDetail({ name, genre, bg_image }) {
           <h3 className="name">{ name }</h3>
           <p className="genre">
             {
-              genre.map(genrex => genrex)
+              genre.map(genrex => <span> { genrex }, </span>)
             }
           </p>
           <div className="movie-url">

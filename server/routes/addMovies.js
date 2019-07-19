@@ -7,20 +7,17 @@ import userModel from '../models/User';
 const addMoviesRoute = express.Router();
 
 addMoviesRoute.get('/', (request, response) => {
-  response.render('add', {
-    title: 'Film ekle',
-    login: (request.session.username) ? true : false,
-    username: request.session.username,
-    user_role: request.session.role
+  response.json({
+    status: 200
   });
 });
 
 addMoviesRoute.post('/', async (request, response) => {
 
-  const { name, genre, content, public_user } = request.body;
+  const { username, name, genre, content, public_user } = request.body;
 
   // Kullanıcı bilgileri buradan id alacağız.
-  const user = userModel.findOne({username: request.session.username});
+  const user = userModel.findOne({username});
 
   user.then(user_id => {
 
@@ -46,15 +43,17 @@ addMoviesRoute.post('/', async (request, response) => {
         request.files.movie_img.mv('./public/img/movies/', request.files.movie_img.name);
       }
       
-      response.redirect('/');
+      response.json({
+        newMovie: movie
+      });
     });
 
     // Hata oluşmuş ise
-    moviePromise.catch(error => console.log(error));
+    moviePromise.catch(error => response.json({error}));
 
   });
 
-  user.catch(error => console.log(error));
+  user.catch(error => response.json({error}));
 
 });
 
