@@ -13,10 +13,13 @@ function MyMovies() {
     : 
     null;
 
+  // Tüm filmlerin tutulacağı state
   const [movies, setMovies] = useState({ movies: [], pages: null });
   
+  // Şu anda gösterilen sayfanın numarası sayfa yenilendiğinde 0 olmaktadır.
   const [showPage, setShowPage] = useState();
 
+  // Tüm değerleri saniye başı çeken yaşam methodu
   useEffect(() => {
 
     const moviesData = axios({
@@ -41,8 +44,6 @@ function MyMovies() {
   });
 
   const ShowPage = (showPage) => setShowPage(showPage);
-
-  console.log(showPage)
 
   return (
     <div className="movie-grid mt-4">

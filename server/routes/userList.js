@@ -11,17 +11,13 @@ userListRoute.get('/', (request, response) => {
   const users = userModel.paginate({}, { page: 1, limit: 10 });
 
   users.then(user => {
-    response.render('users', {
-      title: 'Kayıtlı kullanıcılar',
-      login: (request.session.username) ? true : false,
-      username: request.session.username,
-      user_role: request.session.role,
+    response.json({
       users: user.docs,
-      pages_number: (user.pages > 1) ? Array(user.pages).fill(0).map((e,i)=>i+1) : null
+      pages_number: user.pages
     });
   });
 
-  users.catch(error => console.log(error));
+  users.catch(error => response.json({error}));
 
 });
 
@@ -31,17 +27,13 @@ userListRoute.get('/:page', (request, response) => {
   const users = userModel.paginate({}, { page: request.params.page, limit: 10 });
 
   users.then(user => {
-    response.render('users', {
-      title: 'Kayıtlı kullanıcılar',
-      login: (request.session.username) ? true : false,
-      username: request.session.username,
-      user_role: request.session.role,
+    response.json({
       users: user.docs,
-      pages_number: (user.pages > 1) ? Array(user.pages).fill(0).map((e,i)=>i+1) : null
+      pages_number: user.pages
     });
   });
 
-  users.catch(error => console.log(error));
+  users.catch(error => response.json({error}));
 
 });
 
@@ -58,10 +50,12 @@ userListRoute.post('/', (request, response) => {
     const perm_user = userModel.findByIdAndUpdate(permission, { role: 'admin' }, {new: true} );
 
     perm_user.then(user => {
-      response.redirect('/users');
+      response.json({
+        update_user: user
+      });
     });
 
-    perm_user.catch(error => console.log(error));
+    perm_user.catch(error => response.json({error}));
 
   }
 
@@ -72,56 +66,21 @@ userListRoute.post('/', (request, response) => {
     const delete_user = userModel.findByIdAndDelete(user_delete);
 
     delete_user.then(user => {
-      response.redirect('/users');
+      response.json({
+        delete_user: user
+      });
     });
 
-    delete_user.catch(error => console.log(error));
+    delete_user.catch(error => response.json({error}));
 
   }
 
   // Farklı bir istek gelirse başka sayfaya yönlendir.
   else {
-    response.redirect('/users');
-  }
-
-});
-
-userListRoute.post('/:page', (request, response) => {
-  
-  // İşlemlerin post yollanması
-  const { permission, user_delete } = request.body;
-
-  // Eğer yetki vermek istenirse
-  if(permission) {
-
-    // Yetki verilecek kullanıcı id ile bulunur ve role kısmı admin olur.
-    const perm_user = userModel.findByIdAndUpdate(permission, { role: 'admin' }, {new: true} );
-
-    perm_user.then(user => {
-      response.redirect('/users');
+    response.json({
+      status: 404,
+      error: 'Böyle bir işlem yoktur.'
     });
-
-    perm_user.catch(error => console.log(error));
-
-  }
-
-  // Eğer kullanıcı silinecek ise
-  else if (user_delete) {
-
-    // Silinecek kullanıcı id ile bulunur ve silinir.
-    const delete_user = userModel.findByIdAndDelete(user_delete);
-
-    delete_user.then(user => {
-      response.redirect('/users');
-    });
-
-    delete_user.catch(error => console.log(error));
-
-  }
-
-  // Farklı bir istek gelirse başka sayfaya yönlendir.
-  else {
-    response.redirect('/users');
   }
 
 });

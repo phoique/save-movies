@@ -21,6 +21,7 @@ import publicCheck from './routes/publicCheck';
 // Midddleware
 import verifyToken from './middleware/verifyToken';
 import loginRedirect from './middleware/loginRedirect';
+import adminRoute from './middleware/adminRoute';
 
 // Dotenv run
 dotenv.config();
@@ -55,8 +56,8 @@ app.use('/api/register', loginRedirect, register);
 app.use('/api/login', loginRedirect, login);
 app.use('/api/add', verifyToken, addMovies);
 app.use('/api/movies', verifyToken, myMovies);
-app.use('/api/users', verifyToken, userList);
-app.use('/api/check', verifyToken, publicCheck);
+app.use('/api/users', adminRoute, userList);
+app.use('/api/check', adminRoute, publicCheck);
 app.use('/api/logout', logout);
 app.use('/api/', home);
 
