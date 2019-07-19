@@ -6,7 +6,7 @@
 
 ### Install server (Node.js + JWT)
 
-Open [https://github.com/Phoique/save-movies/blob/master/server/README.md](https://github.com/Phoique/save-movies/blob/master/server/README.md)
+[https://github.com/Phoique/save-movies/blob/master/server/README.md](https://github.com/Phoique/save-movies/blob/master/server/README.md)
 
 ## Hatalar ve Sonradan eklenecekler listesi.
 - Tasarım değiştirilecek.
