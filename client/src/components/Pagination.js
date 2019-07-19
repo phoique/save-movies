@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Pagination({ pages, url }) {
+function Pagination({ pages, ShowPage }) {
   return (
     <div className="row justify-content-center">
       <nav>
@@ -9,9 +9,15 @@ function Pagination({ pages, url }) {
             Array(pages).fill(0).map(
             (number, index) => 
             <li className="page-item" key={index}>
-              <a className="page-link" href={`/${ url }/${index+1}`}>
+              <div
+                style={{cursor: 'pointer'}} 
+                className="page-link" 
+                onClick={() => ShowPage(index + 1)} 
+                >
+
               { index + 1 }
-              </a>
+
+              </div>
             </li>)
           }
         </ul>

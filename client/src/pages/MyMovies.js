@@ -14,11 +14,13 @@ function MyMovies() {
     null;
 
   const [movies, setMovies] = useState({ movies: [], pages: null });
+  
+  const [showPage, setShowPage] = useState();
 
   useEffect(() => {
 
     const moviesData = axios({
-      url: 'http://localhost:3001/api/movies/',
+      url: `http://localhost:3001/api/movies/${showPage}`,
       headers: {
         'x-access-token': localStorage.getItem('token')
       },
@@ -28,16 +30,19 @@ function MyMovies() {
       }
     });
 
-    moviesData.then(movies => 
+    moviesData.then(moviesx => 
       setMovies({ 
-        movies: movies.data.movies, 
-        pages: movies.data.pages_number 
+        ...movies,
+        movies: moviesx.data.movies, 
+        pages: moviesx.data.pages_number
       }));
 
     moviesData.catch(error => console.log(error));
-  }, []);
-  
-  console.log(movies);
+  });
+
+  const ShowPage = (showPage) => setShowPage(showPage);
+
+  console.log(showPage)
 
   return (
     <div className="movie-grid mt-4">
@@ -54,7 +59,7 @@ function MyMovies() {
       </div>
       {
         (movies.pages > 1) ? 
-          <Pagination pages= {movies.pages} url={'mymovies'} /> 
+          <Pagination pages={movies.pages} url={'mymovies'}  ShowPage={ShowPage}/> 
         : 
           null
       }
