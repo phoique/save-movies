@@ -32,6 +32,22 @@ function Users() {
 
   const ShowPage = (showPage) => setShowPage(showPage);
 
+  // Kullanıcı işlemleri silme ve güncelleme.
+  const userOperations = ({ target }, user_id) => {
+    const userOp = axios({
+      url: "http://localhost:3001/api/users/",
+      headers: {
+        'x-access-token': localStorage.getItem('token')
+      },
+      method: 'post',
+      data: {
+        [target.name]: user_id
+      }
+    });
+
+    userOp.catch(error => console.log(error));
+  }
+
   return (
     <div className="mt-3 text-center">
       <div className="table-responsive">
@@ -52,10 +68,24 @@ function Users() {
                   <td>{user.username}</td>
                   <td>{user.role}</td>
                   <td>
-                    <button className="btn btn-warning" type="submit" name="permission"
-                      style={{marginRight: 10}}>Yetki ver</button>
-                    <button className="btn btn-info" type="submit" name="edit" style={{marginRight: 10}}>Düzenle</button>
-                    <button className="btn btn-danger" name="user_delete" type="submit">Sil</button>
+                    <button 
+                      className="btn btn-warning" 
+                      type="button" 
+                      name="permission"
+                      style={{marginRight: 10}}
+                      onClick={(event) => userOperations(event, user._id)}>Yetki ver</button>
+
+                    <button 
+                      className="btn btn-info" 
+                      type="button" 
+                      name="edit" 
+                      style={{marginRight: 10}}>Düzenle</button>
+
+                    <button 
+                      className="btn btn-danger" 
+                      name="user_delete" 
+                      onClick={(event) => userOperations(event, user._id)}
+                      type="button">Sil</button>
                   </td>
                 </tr>)
             }
