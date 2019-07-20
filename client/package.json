@@ -18,7 +18,12 @@
   "keywords": [
     "save",
     "movies",
-    "react"
+    "react",
+    "jwt-decode",
+    "auth",
+    "localstorage",
+    "private route",
+    "pagination"
   ],
   "author": "Phoique <official.phoique@gmail.com>",
   "license": "MIT",

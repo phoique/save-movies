@@ -4,8 +4,9 @@
   "description": "Save movies rest api",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
+    "start": "node dist/index.js",
+    "clean": "rimraf dist",
+    "build": "npm run clean && mkdir -p dist && babel src -s -D -d dist",
     "start:dev": "nodemon --exec babel-node index.js"
   },
   "repository": {
@@ -16,7 +17,11 @@
     "save",
     "movies",
     "nodejs",
-    "handlebars"
+    "handlebars",
+    "pagination",
+    "jwt",
+    "token",
+    "auth"
   ],
   "author": "Phoique <official.phoique@gmail.com>",
   "license": "MIT",
@@ -33,14 +38,14 @@
     "express-fileupload": "^1.1.5",
     "express-session": "^1.16.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.6.2",
+    "mongoose": "^5.6.5",
     "mongoose-paginate": "^5.0.3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/node": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "nodemon": "^1.19.1"
   }
 }
