@@ -1,4 +1,5 @@
 import React from 'react';
+import decode from 'jwt-decode';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // Components
@@ -21,10 +22,18 @@ import AdminRoute from './utils/AdminRoute';
 import './assets/css/styles.css';
 
 function App() {
+
+   // Eğer localstorage token boş ise değer null oluyor dolu ise kullanıcı bilgilerini
+  // bir object içinde dönüyor. Kullanıcı adı ve rolü şeklinde.
+  const user_info = localStorage.getItem('token') ?
+    decode(localStorage.getItem('token') || null) 
+    : 
+    null;
+
   return (
     <div className="container">
-      <Navbar />
-      <Router>
+      <Navbar user_info={user_info}/>
+      <Router user_info={user_info}>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/logout" exact component={Logout} />

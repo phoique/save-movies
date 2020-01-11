@@ -1,16 +1,7 @@
 import React from 'react';
-import decode from 'jwt-decode';
-
-function Navbar() {
-
-  // Eğer localstorage token boş ise değer null oluyor dolu ise kullanıcı bilgilerini
-  // bir object içinde dönüyor. Kullanıcı adı ve rolü şeklinde.
-  const user_info = localStorage.getItem('token') ?
-    decode(localStorage.getItem('token') || null) 
-    : 
-    null;
 
 
+function Navbar({user_info}) {
   return (
     <div>
       <nav className="navbar navbar-expand-sm navbar-light mt-2">
