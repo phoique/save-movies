@@ -30,7 +30,7 @@ function Login() {
     <div className="login-photo">
       <div className="form-container">
         <div className="image-holder"></div>
-        <form>
+        <form onSubmit={handleLogin}>
           <h2 className="text-center">
             <strong>Giriş Yap</strong>
             </h2>
@@ -43,7 +43,7 @@ function Login() {
           <div className="form-group">
           </div>
           <div className="form-group">
-            <button className="btn btn-primary btn-block" onClick={() => handleLogin()} type="submit">Kayıt Ol</button>
+            <button className="btn btn-primary btn-block" type="submit">Giriş Yap</button>
           </div>
         </form>
       </div>

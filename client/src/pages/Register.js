@@ -17,7 +17,7 @@ function Register() {
     });
   }
 
-  const passwordsMatch = async () => {
+  const handleRegister = async () => {
     if(userValues.password === userValues.password_repeat) {
       
       await axios({
@@ -42,7 +42,7 @@ function Register() {
     <div className="register-photo">
       <div className="form-container">
         <div className="image-holder col-sm-12"></div>
-        <form className="col-sm-12">
+        <form className="col-sm-12" onSubmit={handleRegister}>
           <h2 className="text-center">
             <strong>Hesap oluştur</strong>
           </h2>
@@ -64,7 +64,7 @@ function Register() {
             <input className="form-control" type="password" name="password_repeat" onChange={event => changeValues(event)} placeholder="Tekrar şifre" required minLength="5" />
           </div>
           <div className="form-group">
-            <button className="btn btn-primary btn-block" onClick={() => passwordsMatch()} type="submit">Kayıt Ol</button>
+            <button className="btn btn-primary btn-block" type="submit">Kayıt Ol</button>
           </div>
           <p className="already">Hesabın var mı o zaman <a href="/login">giriş yap</a>.</p>
         </form>
