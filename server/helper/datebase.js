@@ -1,7 +1,13 @@
 import mongoose from 'mongoose';
 
 function Connect() {
-  mongoose.connect(process.env.DATEBASE_URL ,{ useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false });
+  mongoose.connect(process.env.DATEBASE_URL ,
+    { 
+      useNewUrlParser: true, 
+      useCreateIndex: true, 
+      useFindAndModify: false,
+      useUnifiedTopology: true
+    });
 
   // Datebase conneted
   mongoose.connection.on('open', () => console.log('Datebase connected.'));
