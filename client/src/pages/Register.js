@@ -17,21 +17,16 @@ function Register() {
     });
   }
 
-  const handleRegister = async () => {
+  const handleRegister = async (event) => {
+    event.preventDefault();
     if(userValues.password === userValues.password_repeat) {
-      
-      await axios({
-        method: 'post',
-        url: 'http://localhost:3001/api/register',
-        data: {
-          username: userValues.username,
-          password: userValues.password
-        }
-      }).then(data => localStorage.setItem('token', data.data.token));
-
+      const response = await axios.post('http://localhost:3001/api/register',{
+        username: userValues.username,
+        password: userValues.password
+      });
+      localStorage.setItem('token', response.data.token);
     }
     else {
-      console.log('Yanlış.');
       setUserValues({
         password_match_status: false
       });

@@ -15,15 +15,14 @@ function Login() {
     });
   }
 
-  const handleLogin = async () => {
-    await axios({
-      method: 'post',
-      url: 'http://localhost:3001/api/login',
-      data: {
-        username: userValues.username,
-        password: userValues.password
-      }
-    }).then(data => localStorage.setItem('token', data.data.token));
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    const response = await axios.post('http://localhost:3001/api/login',{
+      username: userValues.username,
+      password: userValues.password
+    });
+
+    localStorage.setItem('token', response.data.token);
   }
 
   return (
