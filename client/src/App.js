@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import decode from 'jwt-decode';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -23,17 +23,27 @@ import './assets/css/styles.css';
 
 function App() {
 
-   // Eğer localstorage token boş ise değer null oluyor dolu ise kullanıcı bilgilerini
-  // bir object içinde dönüyor. Kullanıcı adı ve rolü şeklinde.
-  const user_info = localStorage.getItem('token') ?
+  
+
+  const [info, setInfo] = useState({});
+
+  // Her bir aksiyonda token olup olmadığını kontrol ediyor. Bu da çıkış yapıldığında navbarın eski halini alması
+  // için sayfa yenilenmesi sorununu çözüyor.
+  useEffect(() => {
+    // Eğer localstorage token boş ise değer null oluyor dolu ise kullanıcı bilgilerini
+    // bir object içinde dönüyor. Kullanıcı adı ve rolü şeklinde.
+    const user_info = localStorage.getItem('token') ?
     decode(localStorage.getItem('token') || null) 
     : 
     null;
 
+    setInfo({...user_info});
+  }, []);
+  
   return (
     <div className="container">
-      <Navbar user_info={user_info}/>
-      <Router user_info={user_info}>
+      <Navbar user_info={info}/>
+      <Router user_info={info}>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/logout" exact component={Logout} />
