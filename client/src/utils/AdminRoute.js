@@ -7,10 +7,10 @@ const user_info = localStorage.getItem('token') ?
     : 
     null;
 
-const AdminRoute = ({ component: Component, ...rest }) => (
+const AdminRoute = ({token, component: Component, ...rest }) => (
   <Route {...rest} render={
     props => (
-      (localStorage.getItem("token") !== null && user_info.user_role === 'admin') ? 
+      (token !== null && user_info.user_role === 'admin') ? 
       <Component {...props} />
       : 
       <Redirect to="/" /> 

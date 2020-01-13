@@ -39,20 +39,20 @@ function App() {
 
     setInfo({...user_info});
   }, []);
-  
+
   return (
     <div className="container">
       <Navbar user_info={info}/>
-      <Router user_info={info}>
+      <Router>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/logout" exact component={Logout} />
-          <IsLoginRoute path="/login" exact component={Login} />
-          <IsLoginRoute path ="/register" exact component={Register} />
-          <PrivateRoute path ="/mymovies" exact component={MyMovies} />
-          <PrivateRoute path ="/add" exact component={Add} />
-          <AdminRoute path ="/users" exact component={Users} />
-          <AdminRoute path ="/checks" exact component={PublicCheck} />
+          <IsLoginRoute token={info} path="/login" exact component={Login} />
+          <IsLoginRoute token={info} path ="/register" exact component={Register} />
+          <PrivateRoute token={info} path ="/mymovies" exact component={MyMovies} />
+          <PrivateRoute token={info} path ="/add" exact component={Add} />
+          <AdminRoute token={info} path ="/users" exact component={Users} />
+          <AdminRoute token={info} path ="/checks" exact component={PublicCheck} />
         </Switch>
       </Router>
     </div>
