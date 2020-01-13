@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 function Login() {
 
@@ -23,6 +24,9 @@ function Login() {
     });
 
     localStorage.setItem('token', response.data.token);
+
+    // Sayfa prevent yüzünden yenilenmediği için manuel yenileniyor.
+    window.location.reload();
   }
 
   return (

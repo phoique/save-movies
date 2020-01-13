@@ -25,6 +25,9 @@ function Register() {
         password: userValues.password
       });
       localStorage.setItem('token', response.data.token);
+      
+      // Sayfa prevent yüzünden yenilenmediği için manuel yenileniyor.
+      window.location.reload();
     }
     else {
       setUserValues({
