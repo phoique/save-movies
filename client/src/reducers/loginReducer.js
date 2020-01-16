@@ -15,18 +15,15 @@ export default (state = initialState, { type, payload }) => {
 	switch (type){
 		case FETCH_LOGIN_PENDING:
 			return {
-				...state,
 				fetching: true
 			};
 		case FETCH_LOGIN_FULFILLED:
-			localStorage.setItem('token', payload);
 			return {
 				token: payload,
 				fetching: false
 			};
 		case FETCH_LOGIN_REJECTED:
 			return {
-				...state,
 				error: payload,
 				fetching: false
 			};

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { fetchLogin } from '../actions/loginAction';
 
@@ -17,10 +16,11 @@ function Login(props) {
     });
   }
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
+  const handleLogin = (event) => {
+    //event.preventDefault();
     props.fetchLogin(userValues.username, userValues.password);
-    setTimeout(() => window.location.reload(), 1000);
+    //localStorage.setItem('token', payload);
+    console.log(props);
   }
 
   
@@ -28,7 +28,7 @@ function Login(props) {
     <div className="login-photo">
       <div className="form-container">
         <div className="image-holder"></div>
-        <form onSubmit={handleLogin}>
+        <form >
           <h2 className="text-center">
             <strong>Giriş Yap</strong>
             </h2>
@@ -41,7 +41,7 @@ function Login(props) {
           <div className="form-group">
           </div>
           <div className="form-group">
-            <button className="btn btn-primary btn-block" type="submit">Giriş Yap</button>
+            <button className="btn btn-primary btn-block" onClick={handleLogin} type="button">Giriş Yap</button>
           </div>
         </form>
       </div>

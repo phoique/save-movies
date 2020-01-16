@@ -18,7 +18,7 @@ function Register() {
   }
 
   const handleRegister = async (event) => {
-    event.preventDefault();
+    //event.preventDefault();
     if(userValues.password === userValues.password_repeat) {
       const response = await axios.post('http://localhost:3001/api/register',{
         username: userValues.username,
