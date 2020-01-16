@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchLogin } from '../actions/loginAction';
+import { fetchAuth } from '../actions/authAction';
 
 function Login(props) {
 
@@ -18,15 +18,14 @@ function Login(props) {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    props.fetchLogin(userValues.username, userValues.password);
+    props.fetchAuth('login', userValues.username, userValues.password);
   }
 
   useEffect(() => {
-    console.log(props.token);
     if(props.token.token != null) {
       localStorage.setItem('token', props.token.token);
+      window.location.reload();
     }
-    //
   }, [props.token]);
   
   return (
@@ -59,7 +58,7 @@ const mapStateToProps = ({ token }) => ({
 })
 
 const mapDispatchToProps = {
-  fetchLogin
+  fetchAuth
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

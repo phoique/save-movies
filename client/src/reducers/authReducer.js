@@ -1,7 +1,7 @@
 import { 
-  FETCH_LOGIN_PENDING, 
-  FETCH_LOGIN_FULFILLED,
-  FETCH_LOGIN_REJECTED } from '../actions/loginAction';
+  FETCH_AUTH_PENDING, 
+  FETCH_AUTH_FULFILLED,
+  FETCH_AUTH_REJECTED } from '../actions/authAction';
 
 // Default state
 const initialState = {
@@ -13,17 +13,17 @@ const initialState = {
 // Reducer
 export default (state = initialState, { type, payload }) => {
 	switch (type){
-		case FETCH_LOGIN_PENDING:
+		case FETCH_AUTH_PENDING:
 			return {
 				...state,
 				fetching: true
 			};
-		case FETCH_LOGIN_FULFILLED:
+		case FETCH_AUTH_FULFILLED:
 			return {
 				token: payload,
 				fetching: false
 			};
-		case FETCH_LOGIN_REJECTED:
+		case FETCH_AUTH_REJECTED:
 			return {
 				error: payload,
 				fetching: false

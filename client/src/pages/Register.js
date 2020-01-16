@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { fetchAuth } from '../actions/authAction';
 
-function Register() {
+function Register(props) {
 
   const [userValues, setUserValues] = useState({
     username: null,
@@ -18,16 +19,10 @@ function Register() {
   }
 
   const handleRegister = async (event) => {
-    //event.preventDefault();
+    event.preventDefault();
     if(userValues.password === userValues.password_repeat) {
-      const response = await axios.post('http://localhost:3001/api/register',{
-        username: userValues.username,
-        password: userValues.password
-      });
-      localStorage.setItem('token', response.data.token);
-      
-      // Sayfa prevent yüzünden yenilenmediği için manuel yenileniyor.
-      //window.location.reload();
+      event.preventDefault();
+      props.fetchAuth('register', userValues.username, userValues.password);
     }
     else {
       setUserValues({
@@ -35,6 +30,13 @@ function Register() {
       });
     }
   }
+
+  useEffect(() => {
+    if(props.token.token != null) {
+      localStorage.setItem('token', props.token.token);
+      window.location.reload();
+    }
+  }, [props.token]);
 
   return (
     <div className="register-photo">
@@ -71,4 +73,12 @@ function Register() {
   );
 }
 
-export default Register;
+const mapStateToProps = ({ token }) => ({
+  token
+})
+
+const mapDispatchToProps = {
+  fetchAuth
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Register);
