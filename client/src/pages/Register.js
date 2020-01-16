@@ -27,7 +27,7 @@ function Register() {
       localStorage.setItem('token', response.data.token);
       
       // Sayfa prevent yüzünden yenilenmediği için manuel yenileniyor.
-      window.location.reload();
+      //window.location.reload();
     }
     else {
       setUserValues({

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { fetchLogin } from '../actions/loginAction';
 
-function Login() {
+function Login(props) {
 
   const [userValues, setUserValues] = useState({
     username: null,
@@ -17,17 +19,11 @@ function Login() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    const response = await axios.post('http://localhost:3001/api/login',{
-      username: userValues.username,
-      password: userValues.password
-    });
-
-    localStorage.setItem('token', response.data.token);
-
-    // Sayfa prevent yüzünden yenilenmediği için manuel yenileniyor.
-    window.location.reload();
+    props.fetchLogin(userValues.username, userValues.password);
+    setTimeout(() => window.location.reload(), 1000);
   }
 
+  
   return (
     <div className="login-photo">
       <div className="form-container">
@@ -53,4 +49,12 @@ function Login() {
   );
 }
 
-export default Login;
+const mapStateToProps = ({ token }, props) => ({
+  token
+})
+
+const mapDispatchToProps = {
+  fetchLogin
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

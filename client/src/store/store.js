@@ -1,20 +1,24 @@
-import React, { createContext, useReducer } from 'react';
-import tokenReducer, { initialState } from '../reducers/tokenReducer';
+import React from 'react';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+import reduxPromise from 'redux-promise-middleware';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { Provider } from 'react-redux';
+import rootReducer from '../reducers/rootReducer';
 
-// Context
-const Context = createContext();
+const store = createStore(
+	rootReducer,
+	composeWithDevTools(
+		applyMiddleware(reduxPromise, thunk, logger)
+	)
+);
 
-const Store = ({ children }) => {
-
-  const [state, dispatch] = useReducer(tokenReducer, initialState);
-  const value = { state, dispatch };
-
-  return(
-    <Context.Provider value={value}>
-      {children}
-    </Context.Provider>
+const Store = ({ children }) => (
+    <Provider store={store}>
+      { children }
+    </Provider>
   );
-}
 
-export { Context };
+
 export default Store;
