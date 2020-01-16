@@ -1,29 +1,30 @@
 import { 
-  FETCH_AUTH_PENDING, 
-  FETCH_AUTH_FULFILLED,
-  FETCH_AUTH_REJECTED } from '../actions/auth';
+  FETCH_MOVIE_PENDING, 
+  FETCH_MOVIE_FULFILLED,
+  FETCH_MOVIE_REJECTED } from '../actions/myMovies';
 
 // Default state
 const initialState = {
   fetching: false,
-  token: null,
+  movies: [],
+  page: null,
   error: {},
 }
 
 // Reducer
 export default (state = initialState, { type, payload }) => {
 	switch (type){
-		case FETCH_AUTH_PENDING:
+		case FETCH_MOVIE_PENDING:
 			return {
 				...state,
 				fetching: true
 			};
-		case FETCH_AUTH_FULFILLED:
+		case FETCH_MOVIE_FULFILLED:
 			return {
-				token: payload,
+				movies: payload.data,
 				fetching: false
 			};
-		case FETCH_AUTH_REJECTED:
+		case FETCH_MOVIE_REJECTED:
 			return {
 				error: payload,
 				fetching: false

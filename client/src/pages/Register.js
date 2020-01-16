@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchAuth } from '../actions/authAction';
+import { fetchAuth } from '../actions/auth';
 
 function Register(props) {
 

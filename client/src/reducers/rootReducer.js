@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 
-import tokenReducer from './authReducer';
+import auth from './authReducer';
+import myMovies from './myMoviesReducer';
 
 export default combineReducers({
-  token: tokenReducer
+  authToken: auth,
+  myMovies: myMovies
 });
