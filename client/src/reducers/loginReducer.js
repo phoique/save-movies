@@ -15,6 +15,7 @@ export default (state = initialState, { type, payload }) => {
 	switch (type){
 		case FETCH_LOGIN_PENDING:
 			return {
+				...state,
 				fetching: true
 			};
 		case FETCH_LOGIN_FULFILLED:

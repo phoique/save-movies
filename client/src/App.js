@@ -38,7 +38,7 @@ function App() {
     null;
 
     setInfo({...user_info});
-  }, []);
+  }, [localStorage.getItem('token')]);
 
   return (
     <div className="container">

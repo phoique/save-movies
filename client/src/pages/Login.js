@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchLogin } from '../actions/loginAction';
 
@@ -17,18 +17,23 @@ function Login(props) {
   }
 
   const handleLogin = (event) => {
-    //event.preventDefault();
+    event.preventDefault();
     props.fetchLogin(userValues.username, userValues.password);
-    //localStorage.setItem('token', payload);
-    console.log(props);
   }
 
+  useEffect(() => {
+    console.log(props.token);
+    if(props.token.token != null) {
+      localStorage.setItem('token', props.token.token);
+    }
+    //
+  }, [props.token]);
   
   return (
     <div className="login-photo">
       <div className="form-container">
         <div className="image-holder"></div>
-        <form >
+        <form onSubmit={handleLogin}>
           <h2 className="text-center">
             <strong>Giriş Yap</strong>
             </h2>
@@ -41,7 +46,7 @@ function Login(props) {
           <div className="form-group">
           </div>
           <div className="form-group">
-            <button className="btn btn-primary btn-block" onClick={handleLogin} type="button">Giriş Yap</button>
+            <button className="btn btn-primary btn-block" type="submit">Giriş Yap</button>
           </div>
         </form>
       </div>
@@ -49,7 +54,7 @@ function Login(props) {
   );
 }
 
-const mapStateToProps = ({ token }, props) => ({
+const mapStateToProps = ({ token }) => ({
   token
 })
 
