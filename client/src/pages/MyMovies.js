@@ -34,9 +34,7 @@ function MyMovies(props) {
       }
       {
         (props.myMovies.page > 1) ? 
-          <Pagination pages={props.myMovies.page} url={'mymovies'}  ShowPage={ShowPage}/> 
-        : 
-          null
+          <Pagination pages={props.myMovies.page} ShowPage={ShowPage}/> : null
       }
     </div>
   );
