@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { response } from 'express';
 
 // model
 import userModel from '../models/User';
@@ -39,50 +39,40 @@ userListRoute.get('/:page', (request, response) => {
 
 // Kullanıcıya işlemler yapıldığında gönderilen post
 userListRoute.post('/', (request, response) => {
-  
-  // İşlemlerin post yollanması
-  const { permission, user_delete } = request.body;
+  response.json({
+    status: 200,
+    error: 'Kullanıcı güncelleme işlemi sonra yazılacaktır.'
+  });
+});
 
-  // Eğer yetki vermek istenirse
-  if(permission) {
+userListRoute.put('/', (request, response) => {
+  const { user_id } = request.body;
 
-    // Yetki verilecek kullanıcı id ile bulunur ve role kısmı admin olur.
-    const perm_user = userModel.findByIdAndUpdate(permission, { role: 'admin' }, {new: true} );
+  // Yetki verilecek kullanıcı id ile bulunur ve role kısmı admin olur.
+  const perm_user = userModel.findByIdAndUpdate(user_id, { role: 'admin' }, {new: true} );
 
-    perm_user.then(user => {
-      response.json({
-        update_user: user
-      });
-    });
-
-    perm_user.catch(error => response.json({error}));
-
-  }
-
-  // Eğer kullanıcı silinecek ise
-  else if (user_delete) {
-
-    // Silinecek kullanıcı id ile bulunur ve silinir.
-    const delete_user = userModel.findByIdAndDelete(user_delete);
-
-    delete_user.then(user => {
-      response.json({
-        delete_user: user
-      });
-    });
-
-    delete_user.catch(error => response.json({error}));
-
-  }
-
-  // Farklı bir istek gelirse başka sayfaya yönlendir.
-  else {
+  perm_user.then(user => {
     response.json({
-      status: 404,
-      error: 'Böyle bir işlem yoktur.'
+      update_user: user
     });
-  }
+  });
 
+  perm_user.catch(error => response.json({error}));
+});
+
+userListRoute.delete('/', (request, response) => {
+
+  const { user_id } = request.body;
+  // Silinecek kullanıcı id ile bulunur ve silinir.
+  const delete_user = userModel.findByIdAndDelete(user_id);
+
+  delete_user.then(user => {
+    response.json({
+      delete_user: user
+    });
+  });
+
+  delete_user.catch(error => response.json({error}));
 });
 
 export default userListRoute;
