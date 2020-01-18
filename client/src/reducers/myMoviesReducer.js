@@ -21,7 +21,9 @@ export default (state = initialState, { type, payload }) => {
 			};
 		case FETCH_MOVIE_FULFILLED:
 			return {
-				movies: payload.data,
+				...state,
+				movies: payload.data.movies,
+				page: payload.data.pages_number,
 				fetching: false
 			};
 		case FETCH_MOVIE_REJECTED:
