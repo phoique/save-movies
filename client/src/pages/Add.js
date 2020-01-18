@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import decode from 'jwt-decode';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { addMovie } from '../actions/addMovie';
 
 const animatedComponents = makeAnimated();
 
-function Add() {
+function Add(props) {
 
   const genreOptionValue = [
     { value: 'Aksiyon', label: 'Aksiyon' },
@@ -50,22 +51,12 @@ function Add() {
   }
 
   const AddMovie = () => {
-    axios({
-      url: "http://localhost:3001/api/add",
-      headers: {
-        'x-access-token': localStorage.getItem('token')
-      },
-      method: 'post',
-      data: {
-        ...movieInfo,
-        genre: movieInfo.genre.map(x => x.value)
-      }
-    }).then(x => console.log(x));
+    props.addMovie({...movieInfo});
   }
 
   return (
     <div className="movie-add-clean">
-      <form>
+      <form onSubmit={AddMovie}>
         <h2 className="text-center">Film Ekle</h2>
         <div className="form-group">
           <input className="form-control" type="text" name="name" onChange={changeValue} placeholder="Film adı" required maxLength="20" />
@@ -120,11 +111,19 @@ function Add() {
           </div>
         </div>
         <div className="form-group">
-          <button className="btn btn-primary text-center" onClick={AddMovie} type="submit">Kaydet</button>
+          <button className="btn btn-primary text-center" type="submit">Kaydet</button>
         </div>
       </form>
     </div>
   );
 }
 
-export default Add;
+const mapStateToProps = ({ newMovie }) => ({
+  newMovie
+});
+
+const mapDispatchToProps = {
+  addMovie
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Add);
