@@ -22,11 +22,11 @@ function Login(props) {
   }
 
   useEffect(() => {
-    if(props.token.token != null) {
-      localStorage.setItem('token', props.token.token);
+    if(props.authToken.token != null) {
+      localStorage.setItem('token', props.authToken.token);
       window.location.reload();
     }
-  }, [props.token]);
+  }, [props.authToken]);
   
   return (
     <div className="login-photo">
@@ -53,8 +53,8 @@ function Login(props) {
   );
 }
 
-const mapStateToProps = ({ token }) => ({
-  token
+const mapStateToProps = ({ authToken }) => ({
+  authToken
 })
 
 const mapDispatchToProps = {
