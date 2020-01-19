@@ -1,34 +1,41 @@
 import React from 'react';
+import defaultIMG from '../assets/img/movies/default.jpg';
 
-function CheckDetail({ name, genre, bg_image, userOperations, id }) {
+function CheckDetail({ checkMovies, checkPublic }) {
   return (
-    <div className="col-md-4 col-lg-3 item">
-      <div className="box" style={{ backgroundImage: `url(${bg_image})`}}>
-        <div className="cover">
-          <h3 className="name">{ name }</h3>
-          <p className="genre">
-            {
-              genre.map((genrex, key) => <span key={key}> { genrex }, </span>)
-            }
-          </p>
-          <div className="movie-url">
-            <button 
-              className="btn btn-danger" 
-              name="public_true" 
-              type="submit"
-              onClick={() => userOperations('public_true', id)}>
-                Yayınla
-              </button>
-            <button 
-              className="btn btn-primary" 
-              name="public_false" 
-              type="submit"
-              onClick={() => userOperations('public_false', id)}>
-              Kaldır
-            </button>
+    <div className="row">
+      {
+        checkMovies.map((movie, key) => 
+          <div className="col-md-4 col-lg-3 item" key={key}>
+            <div className="box" style={{ backgroundImage: `url(${defaultIMG})`}}>
+              <div className="cover">
+                <h3 className="name">{ movie.name }</h3>
+                <p className="genre">
+                  {
+                    movie.genre.map((genrex, key) => <span key={key}> { genrex }, </span>)
+                  }
+                </p>
+                <div className="movie-url">
+                  <button 
+                    className="btn btn-danger" 
+                    name="public_true" 
+                    type="submit"
+                    onClick={() => checkPublic('public_true', movie._id)}>
+                      Yayınla
+                    </button>
+                  <button 
+                    className="btn btn-primary" 
+                    name="public_false" 
+                    type="submit"
+                    onClick={() => checkPublic('public_false', movie._id)}>
+                    Kaldır
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+          )
+      }
     </div>
   );
 }

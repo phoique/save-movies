@@ -11,5 +11,5 @@ export default combineReducers({
   myMovies: myMovies,
   newMovie: addMovie,
   users: users,
-  checkMovie: check
+  checkMovies: check
 });
