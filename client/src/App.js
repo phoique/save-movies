@@ -22,9 +22,6 @@ import AdminRoute from './utils/AdminRoute';
 import './assets/css/styles.css';
 
 function App() {
-
-  
-
   const [info, setInfo] = useState({});
 
   // Her bir aksiyonda token olup olmadığını kontrol ediyor. Bu da çıkış yapıldığında navbarın eski halini alması
@@ -38,7 +35,7 @@ function App() {
     null;
 
     setInfo({...user_info});
-  }, [localStorage.getItem('token')]);
+  }, []);
 
   return (
     <div className="container">

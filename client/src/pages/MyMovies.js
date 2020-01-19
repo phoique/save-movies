@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import decode from 'jwt-decode';
 import MoviesDetail from '../components/MoviesDetail';
 import Pagination from '../components/Pagination';
-
 import { connect } from 'react-redux';
 import { getMovies } from '../actions/myMovies';
 
@@ -17,9 +16,10 @@ function MyMovies(props) {
   const [showPage, setShowPage] = useState(1);
 
   // Tüm değerleri saniye başı çeken yaşam methodu
-  
   useEffect(() => {
+    // eslint-disable-next-line
     props.getMovies(user_info.username, showPage);
+    // eslint-disable-next-line
   }, []);
 
   const ShowPage = (showPage) => {

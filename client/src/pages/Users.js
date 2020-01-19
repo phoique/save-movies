@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import Pagination from '../components/Pagination';
 import { getUser, deleteUser, permUser } from '../actions/users';
@@ -17,7 +16,9 @@ function Users(props) {
 
   // Tüm değerleri saniye başı çeken yaşam methodu
   useEffect(() => {
+    // eslint-disable-next-line
     props.getUser(showPage);
+    // eslint-disable-next-line
   }, []);
 
   // Kullanıcı işlemleri silme ve güncelleme.

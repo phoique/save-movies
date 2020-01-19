@@ -10,7 +10,9 @@ function PublicCheck(props) {
 
   // Tüm değerleri saniye başı çeken yaşam methodu
   useEffect(() => {
+    // eslint-disable-next-line
     props.getCheckMovie(showPage);
+    // eslint-disable-next-line
   }, []);
 
   const ShowPage = (showPage) => {
