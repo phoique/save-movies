@@ -1,5 +1,5 @@
 {
-  "name": "next-ssr",
+  "name": "save-movies-ssr",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,8 +8,37 @@
     "start": "next start"
   },
   "dependencies": {
+    "axios": "^0.19.1",
+    "jwt-decode": "^2.2.0",
     "next": "9.2.0",
     "react": "16.12.0",
-    "react-dom": "16.12.0"
-  }
+    "react-dom": "16.12.0",
+    "react-redux": "^7.1.3",
+    "react-select": "^3.0.8",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-logger": "^3.0.6",
+    "redux-promise-middleware": "^6.1.2",
+    "redux-thunk": "^2.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Phoique/save-movies.git"
+  },
+  "keywords": [
+    "save",
+    "movies",
+    "react",
+    "jwt-decode",
+    "auth",
+    "localstorage",
+    "private route",
+    "pagination"
+  ],
+  "author": "Phoique <official.phoique@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Phoique/save-movies/issues"
+  },
+  "homepage": "https://github.com/Phoique/save-movies#readme"
 }
