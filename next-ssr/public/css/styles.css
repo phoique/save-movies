@@ -1,0 +1,370 @@
+.navbar-rad {
+  border-radius: 30px;
+}
+
+.header-main {
+padding: 150px;
+}
+
+.header-text {
+  font-size: 20px;
+}
+
+.header-register {
+  padding: 10px 20px;
+}
+
+.register-photo {
+  position: relative;
+  top: 60px;
+}
+
+.register-photo .image-holder {
+  display: table-cell;
+  width: auto;
+  background: url(../img/driver.jpg);
+  background-size: cover;
+}
+
+.register-photo .form-container {
+  display: table;
+  max-width: 900px;
+  width: 90%;
+  margin: 0 auto;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+.register-photo form {
+  display: table-cell;
+  width: 400px;
+  background-color: #ffffff;
+  padding: 40px 60px;
+  color: #505e6c;
+}
+
+@media (max-width:991px) {
+  .register-photo .form {
+    padding: 40px;
+  }
+}
+
+.register-photo form h2 {
+  font-size: 24px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.register-photo form .form-control {
+  background: #f7f9fc;
+  border: none;
+  border-bottom: 1px solid #dfe7f1;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  color: inherit;
+  text-indent: 6px;
+  height: 40px;
+}
+
+.register-photo form .form-check {
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.register-photo form .btn-primary {
+  background: #f4476b;
+  border: none;
+  border-radius: 4px;
+  padding: 11px;
+  box-shadow: none;
+  margin-top: 35px;
+  text-shadow: none;
+  outline: none !important;
+}
+
+.register-photo form .btn-primary:hover, .register-photo form .btn-primary:active {
+  background: #eb3b60;
+}
+
+.register-photo form .btn-primary:active {
+  transform: translateY(1px);
+}
+
+.register-photo form .already {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #6f7a85;
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+.login-photo {
+  position: relative;
+  top: 120px;
+}
+
+.login-photo .image-holder {
+  display: table-cell;
+  width: auto;
+  background: url(../img/breath.jpg);
+  background-size: cover;
+}
+
+.login-photo .form-container {
+  display: table;
+  max-width: 800px;
+  width: 90%;
+  margin: 0 auto;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+.login-photo form {
+  display: table-cell;
+  width: 400px;
+  background-color: #ffffff;
+  padding: 40px 60px;
+  color: #505e6c;
+}
+
+@media (max-width:991px) {
+  .login-photo form {
+    padding: 40px;
+  }
+}
+
+.login-photo form h2 {
+  font-size: 24px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.login-photo form .form-control {
+  background: #f7f9fc;
+  border: none;
+  border-bottom: 1px solid #dfe7f1;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  color: inherit;
+  text-indent: 6px;
+  height: 40px;
+}
+
+.login-photo form .form-check {
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.login-photo form .btn-primary {
+  background: #f4476b;
+  border: none;
+  border-radius: 4px;
+  padding: 11px;
+  box-shadow: none;
+  margin-top: 35px;
+  text-shadow: none;
+  outline: none !important;
+}
+
+.login-photo form .btn-primary:hover, .login-photo form .btn-primary:active {
+  background: #eb3b60;
+}
+
+.login-photo form .btn-primary:active {
+  transform: translateY(1px);
+}
+
+.login-photo form .already {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #6f7a85;
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+.movie-grid {
+  color: #313437;
+  background-color: #fff;
+}
+
+.movie-grid p {
+  color: #7d8285;
+}
+
+.movie-grid h2 {
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: inherit;
+}
+
+@media (max-width:767px) {
+  .movie-grid h2 {
+    margin-bottom: 25px;
+    padding-top: 25px;
+    font-size: 24px;
+  }
+}
+
+.movie-grid .intro {
+  font-size: 16px;
+  max-width: 510px;
+  margin: 0 auto;
+}
+
+.movie-grid .intro p {
+  margin-bottom: 0;
+}
+
+.movie-grid .people {
+  padding: 50px 0;
+}
+
+.movie-grid .item {
+  margin-bottom: 30px;
+}
+
+.movie-grid .item .box {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-grid .item .cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(43, 45, 48, 0.75);
+  transition: opacity 0.15s ease-in;
+  opacity: 0;
+  padding-top: 80px;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.15);
+}
+
+.movie-grid .item:hover .cover {
+  opacity: 1;
+}
+
+.movie-grid .item .name {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.movie-grid .item .genre {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #bbd8fb;
+  letter-spacing: 2px;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.movie-grid .movie-url a {
+  color: inherit;
+  display: inline-block;
+  opacity: 0.7;
+}
+
+.movie-grid .movie-url a:hover {
+  opacity: 1;
+}
+
+.movie-add-clean {
+  padding: 40px 0;
+}
+
+@media (max-width:767px) {
+  .movie-add-clean {
+    padding: 20px 0;
+  }
+}
+
+.movie-add-clean form {
+  max-width: 480px;
+  width: 90%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 4px;
+  color: #505e6c;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+@media (max-width:767px) {
+  .movie-add-clean form {
+    padding: 30px;
+  }
+}
+
+.movie-add-clean h2 {
+  margin-top: 5px;
+  font-weight: bold;
+  font-size: 28px;
+  margin-bottom: 36px;
+  color: inherit;
+}
+
+.movie-add-clean .form-group:last-child {
+  margin-bottom: 5px;
+}
+
+.movie-add-clean form .form-control {
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.05);
+  outline: none;
+  color: inherit;
+  padding-left: 12px;
+  height: 42px;
+}
+
+.movie-add-clean form .form-control:focus {
+  border: 1px solid #b2b2b2;
+}
+
+.movie-add-clean form textarea.form-control {
+  min-height: 100px;
+  max-height: 260px;
+  padding-top: 10px;
+  resize: vertical;
+}
+
+.movie-add-clean form .btn {
+  padding: 16px 32px;
+  border: none;
+  background: none;
+  box-shadow: none;
+  text-shadow: none;
+  opacity: 0.9;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  line-height: 1;
+  outline: none !important;
+}
+
+.movie-add-clean form .btn:hover {
+  opacity: 1;
+}
+
+.movie-add-clean form .btn:active {
+  transform: translateY(1px);
+}
+
+.movie-add-clean form .btn-primary {
+  background-color: #055ada !important;
+  color: #fff;
+}
+
+.form-mt {
+  margin-top: 15px;
+}
