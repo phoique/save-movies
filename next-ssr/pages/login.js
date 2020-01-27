@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import cookie from 'js-cookie';
 import Layout from '../components/layout';
 import { fetchAuth } from '../actions/auth';
+import Router from 'next/router';
 
 function Login(props) {
 
@@ -26,7 +27,7 @@ function Login(props) {
   useEffect(() => {
     if(props.authToken.token != null) {
       cookie.set('token', props.authToken.token);
-      window.location.reload();
+      Router.push('/');
     }
   }, [props.authToken]);
   
