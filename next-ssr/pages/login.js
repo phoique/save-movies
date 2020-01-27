@@ -4,6 +4,7 @@ import cookie from 'js-cookie';
 import Layout from '../components/layout';
 import { fetchAuth } from '../actions/auth';
 import Router from 'next/router';
+import IsLoginRoute from '../utils/isLoginRoute';
 
 function Login(props) {
 
@@ -32,29 +33,31 @@ function Login(props) {
   }, [props.authToken]);
   
   return (
-    <Layout title="Giriş Yap">
-      <div className="login-photo">
-        <div className="form-container">
-          <div className="image-holder"></div>
-          <form onSubmit={handleLogin}>
-            <h2 className="text-center">
-              <strong>Giriş Yap</strong>
-              </h2>
-            <div className="form-group">
-              <input className="form-control" autoComplete="username" type="text" name="username" onChange={event => changeValues(event)} placeholder="Kullanıcı adı" required minLength="4" maxLength="10" />
-            </div>
-            <div className="form-group">
-              <input className="form-control" autoComplete="password" type="password" name="password" onChange={event => changeValues(event)} placeholder="Şifre" required />
-            </div>
-            <div className="form-group">
-            </div>
-            <div className="form-group">
-              <button className="btn btn-primary btn-block" type="submit">Giriş Yap</button>
-            </div>
-          </form>
+    <IsLoginRoute>
+      <Layout title="Giriş Yap">
+        <div className="login-photo">
+          <div className="form-container">
+            <div className="image-holder"></div>
+            <form onSubmit={handleLogin}>
+              <h2 className="text-center">
+                <strong>Giriş Yap</strong>
+                </h2>
+              <div className="form-group">
+                <input className="form-control" autoComplete="username" type="text" name="username" onChange={event => changeValues(event)} placeholder="Kullanıcı adı" required minLength="4" maxLength="10" />
+              </div>
+              <div className="form-group">
+                <input className="form-control" autoComplete="password" type="password" name="password" onChange={event => changeValues(event)} placeholder="Şifre" required />
+              </div>
+              <div className="form-group">
+              </div>
+              <div className="form-group">
+                <button className="btn btn-primary btn-block" type="submit">Giriş Yap</button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </IsLoginRoute>
   );
 }
 

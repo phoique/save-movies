@@ -5,6 +5,7 @@ import cookie from 'js-cookie';
 import Router from 'next/router';
 import Link from 'next/link';
 import { fetchAuth } from '../actions/auth';
+import IsLoginRoute from '../utils/isLoginRoute';
 
 function Register(props) {
 
@@ -42,44 +43,46 @@ function Register(props) {
   }, [props.authToken]);
 
   return (
-    <Layout title="Kayıt Ol">
-      <div className="register-photo">
-        <div className="form-container">
-          <div className="image-holder col-sm-12"></div>
-          <form className="col-sm-12" onSubmit={handleRegister}>
-            <h2 className="text-center">
-              <strong>Hesap oluştur</strong>
-            </h2>
-            {
-              (userValues.password_match_status) ? 
-              null 
-              : 
-              <div className="alert alert-danger" role="alert">
-                Şifreler uyuşmuyor.
+    <IsLoginRoute>
+      <Layout title="Kayıt Ol">
+        <div className="register-photo">
+          <div className="form-container">
+            <div className="image-holder col-sm-12"></div>
+            <form className="col-sm-12" onSubmit={handleRegister}>
+              <h2 className="text-center">
+                <strong>Hesap oluştur</strong>
+              </h2>
+              {
+                (userValues.password_match_status) ? 
+                null 
+                : 
+                <div className="alert alert-danger" role="alert">
+                  Şifreler uyuşmuyor.
+                </div>
+              }
+              <div className="form-group">
+                <input className="form-control" type="text" autoComplete="xusername" name="username" onChange={event => changeValues(event)} placeholder="Kullanıcı adı" required minLength="4" maxLength="10" />
               </div>
-            }
-            <div className="form-group">
-              <input className="form-control" type="text" autoComplete="xusername" name="username" onChange={event => changeValues(event)} placeholder="Kullanıcı adı" required minLength="4" maxLength="10" />
-            </div>
-            <div className="form-group">
-              <input className="form-control" type="password" autoComplete="xpassword" name="password" onChange={event => changeValues(event)} placeholder="Şifre" required minLength="5" />
-            </div>
-            <div className="form-group">
-              <input className="form-control" type="password" autoComplete="xpassword_repeat" name="password_repeat" onChange={event => changeValues(event)} placeholder="Tekrar şifre" required minLength="5" />
-            </div>
-            <div className="form-group">
-              <button className="btn btn-primary btn-block" type="submit">Kayıt Ol</button>
-            </div>
-            <div className="already">
-              Hesabın var mı o zaman
-              <Link href="/login">
-                <a> giriş yap.</a>
-              </Link>
-            </div>
-          </form>
+              <div className="form-group">
+                <input className="form-control" type="password" autoComplete="xpassword" name="password" onChange={event => changeValues(event)} placeholder="Şifre" required minLength="5" />
+              </div>
+              <div className="form-group">
+                <input className="form-control" type="password" autoComplete="xpassword_repeat" name="password_repeat" onChange={event => changeValues(event)} placeholder="Tekrar şifre" required minLength="5" />
+              </div>
+              <div className="form-group">
+                <button className="btn btn-primary btn-block" type="submit">Kayıt Ol</button>
+              </div>
+              <div className="already">
+                Hesabın var mı o zaman
+                <Link href="/login">
+                  <a> giriş yap.</a>
+                </Link>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </IsLoginRoute>
   );
 }
 
