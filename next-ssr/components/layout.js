@@ -13,7 +13,7 @@ function Layout(props) {
         <link rel="stylesheet" href="/css/styles.css" />
       </Head>
       <div className="container">
-        <Navbar user_info={{username: 'admin', user_role: 'user'}}/>
+        <Navbar />
         { props.children }
       </div>
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossOrigin="anonymous"></script>
