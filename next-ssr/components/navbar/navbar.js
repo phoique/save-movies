@@ -22,39 +22,38 @@ function Navbar({ user_info }) {
               </li>
               {
                 (cookie.get('token') === undefined) ? 
-                null 
+                  null 
                 : 
-                <ul className="navbar-nav">
-                  <li className="nav-item">
-                    <Link href="/mymovies">
-                      <a className="nav-link">Filmlerim</a>
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link href="/add">
-                      <a className="nav-link" >Film Ekle</a>
-                    </Link>
-                  </li>
-
-                  {
-                    (user_info.user_role !== "admin") ? null :
+                  <ul className="navbar-nav">
                     <li className="nav-item">
-                      <Link href="/users">
-                        <a className="nav-link" >Kullanıcılar</a>
+                      <Link href="/mymovies">
+                        <a className="nav-link">Filmlerim</a>
                       </Link>
                     </li>
-                  }
-
-                  {
-                    (user_info.user_role !== "admin") ? null :
                     <li className="nav-item">
-                      <Link href="/checks">
-                        <a className="nav-link">Onaylanacak filmler</a>
+                      <Link href="/add">
+                        <a className="nav-link" >Film Ekle</a>
                       </Link>
                     </li>
-                  }
-                  
-                </ul>
+
+                    {
+                      (user_info.user_role !== "admin") ? null :
+                      <li className="nav-item">
+                        <Link href="/users">
+                          <a className="nav-link" >Kullanıcılar</a>
+                        </Link>
+                      </li>
+                    }
+
+                    {
+                      (user_info.user_role !== "admin") ? null :
+                      <li className="nav-item">
+                        <Link href="/checks">
+                          <a className="nav-link">Onaylanacak filmler</a>
+                        </Link>
+                      </li>
+                    }
+                  </ul>
               }
             </ul>
             <ul className="navbar-nav ml-auto">
