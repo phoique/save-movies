@@ -1,4 +1,5 @@
 import axios from 'axios';
+import cookie from 'js-cookie';
 
 // Kullanıcı yükleme typeları
 const FETCH_USER_PENDING = "FETCH_USER_PENDING"; 
@@ -24,7 +25,7 @@ function getUser(pageNumber){
         url: `http://localhost:3001/api/users/${pageNumber}`,
         method: 'get',
         headers: {
-          'x-access-token': localStorage.getItem('token')
+          'x-access-token': cookie.get('token')
         }
       }).then(userList => userList)
 		})
@@ -39,7 +40,7 @@ function deleteUser(user_id){
         url: "http://localhost:3001/api/users/",
         method: 'delete',
         headers: {
-          'x-access-token': localStorage.getItem('token')
+          'x-access-token': cookie.get('token')
         },
         data: {
           user_id
@@ -57,7 +58,7 @@ function permUser(user_id){
         url: "http://localhost:3001/api/users/",
         method: 'put',
         headers: {
-          'x-access-token': localStorage.getItem('token')
+          'x-access-token': cookie.get('token')
         },
         data: {
           user_id

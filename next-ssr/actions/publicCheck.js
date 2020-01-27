@@ -1,4 +1,6 @@
 import axios from 'axios';
+import cookie from 'js-cookie';
+
 // Filmleri getiren typelar
 const FETCH_CHECK_PENDING = "FETCH_CHECK_PENDING"; 
 const FETCH_CHECK_FULFILLED = "FETCH_CHECK_FULFILLED";
@@ -19,7 +21,7 @@ function getCheckMovie(page){
         url: `http://localhost:3001/api/checks/${page}`,
         method: 'get',
         headers: {
-          'x-access-token': localStorage.getItem('token')
+          'x-access-token': cookie.get('token')
         },
       }).then(movie => movie)
 		})
@@ -34,7 +36,7 @@ function postCheckMovie(status, user_id){
         url: "http://localhost:3001/api/checks/",
         method: 'post',
         headers: {
-          'x-access-token': localStorage.getItem('token')
+          'x-access-token': cookie.get('token')
         },
         data: {
           [status]: user_id
