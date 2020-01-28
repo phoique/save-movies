@@ -4,11 +4,11 @@ import withRedux from 'next-redux-wrapper';
 import { initStore } from '../store/store';
 
 const MyApp = ({ Component, pageProps, store }) => {
-  return (
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
-  );
-}
+    return (
+        <Provider store={store}>
+            <Component {...pageProps} />
+        </Provider>
+    );
+};
 
 export default withRedux(initStore)(MyApp);
