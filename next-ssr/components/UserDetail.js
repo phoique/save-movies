@@ -13,6 +13,7 @@ function UserDetail({ users, userOperations }) {
       </thead>
       <tbody>
         {
+          (users === null) ? null :  
           users.map((user, index) => 
             <tr key={index}>
               <td>{index + 1}</td>
@@ -39,6 +40,9 @@ function UserDetail({ users, userOperations }) {
                   type="button">Sil</button>
               </td>
             </tr>)
+        }
+        {
+          
         }
       </tbody>
     </table>

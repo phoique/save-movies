@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Pagination from '../components/Pagination';
 import { getUser, deleteUser, permUser } from '../actions/users';
 import UserDetail from '../components/UserDetail';
-import PrivateRoute from '../utils/privateRoute';
+import AdminRoute from '../utils/adminRoute';
 import Layout from '../components/layout';
 
 function Users(props) {
@@ -43,7 +43,7 @@ function Users(props) {
   }
 
   return (
-    <PrivateRoute>
+    <AdminRoute>
       <Layout>
         <div className="mt-3 text-center">
           <div className="table-responsive">
@@ -55,7 +55,7 @@ function Users(props) {
           }
       </div>
       </Layout>
-    </PrivateRoute>
+    </AdminRoute>
   );
 }
 

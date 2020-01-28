@@ -3,7 +3,7 @@ import CheckDetail from '../components/CheckDetail';
 import Pagination from '../components/pagination';
 import { connect } from 'react-redux';
 import { getCheckMovie, postCheckMovie } from '../actions/publicCheck';
-import PrivateRoute from '../utils/privateRoute';
+import AdminRoute from '../utils/adminRoute';
 import Layout from '../components/layout';
 
 function PublicCheck(props) {
@@ -29,7 +29,7 @@ function PublicCheck(props) {
   }
 
   return (
-    <PrivateRoute>
+    <AdminRoute>
       <Layout>
         <div className="movie-grid">
           <div className="intro">
@@ -44,7 +44,7 @@ function PublicCheck(props) {
           }
       </div>
       </Layout>
-    </PrivateRoute>
+    </AdminRoute>
   );
 }
 
