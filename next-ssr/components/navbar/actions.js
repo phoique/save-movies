@@ -27,7 +27,7 @@ function Actions({ role }) {
       {
         (role !== "admin") ? null :
         <li className="nav-item">
-          <Link href="/checks">
+          <Link href="/publiccheck" as="checks">
             <a className="nav-link">Onaylanacak filmler</a>
           </Link>
         </li>
