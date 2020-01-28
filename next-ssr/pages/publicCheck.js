@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import CheckDetail from '../components/CheckDetail';
+import CheckDetail from '../components/checkDetail';
 import Pagination from '../components/pagination';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
