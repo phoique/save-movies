@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import PropTypes from 'prop-types';
 import Navbar from './navbar/navbar';
 
 function Layout(props) {
@@ -23,5 +24,10 @@ function Layout(props) {
     </div>
   );
 }
+
+Layout.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.element.isRequired
+};
 
 export default Layout;

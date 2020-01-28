@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 
 function MoviesDetail({ movies }) {
   return (
@@ -25,5 +25,9 @@ function MoviesDetail({ movies }) {
     </div>
   );
 }
+
+MoviesDetail.propTypes = {
+  movies: PropTypes.array.isRequired
+};
 
 export default MoviesDetail;

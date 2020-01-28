@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function CheckDetail({ checkMovies, checkPublic }) {
   return (
@@ -38,5 +39,10 @@ function CheckDetail({ checkMovies, checkPublic }) {
     </div>
   );
 }
+
+CheckDetail.propTypes = {
+  checkMovies: PropTypes.array.isRequired,
+  checkPublic: PropTypes.func.isRequired
+};
 
 export default CheckDetail;

@@ -6,6 +6,7 @@ import Router from 'next/router';
 import Link from 'next/link';
 import { fetchAuth } from '../actions/auth';
 import IsLoginRoute from '../utils/isLoginRoute';
+import PropTypes from 'prop-types';
 
 function Register(props) {
 
@@ -92,6 +93,11 @@ const mapStateToProps = ({ authToken }) => ({
 
 const mapDispatchToProps = {
   fetchAuth
+};
+
+Register.propTypes = {
+  fetchAuth: PropTypes.func,
+  authToken: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps) (Register);

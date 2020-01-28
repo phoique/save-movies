@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function UserDetail({ users, userOperations }) {
   return(
@@ -49,6 +50,10 @@ function UserDetail({ users, userOperations }) {
   );
 }
 
+UserDetail.propTypes = {
+  users: PropTypes.array.isRequired,
+  userOperations: PropTypes.func.isRequired
+};
 
 export default UserDetail;
 

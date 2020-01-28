@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 
 function Dropdown({ username }) {
@@ -27,5 +28,9 @@ function Dropdown({ username }) {
     </li>
   );
 }
+
+Dropdown.propTypes = {
+  username: PropTypes.string
+};
 
 export default Dropdown;

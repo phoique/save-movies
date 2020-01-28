@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Pagination({ pages, ShowPage }) {
   return (
@@ -25,5 +26,10 @@ function Pagination({ pages, ShowPage }) {
     </div>
   );
 }
+
+Pagination.propTypes = {
+  pages: PropTypes.number.isRequired,
+  ShowPage: PropTypes.func.isRequired
+};
 
 export default Pagination;

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import cookie from 'js-cookie';
+import Router from 'next/router';
+import PropTypes from 'prop-types';
 import Layout from '../components/layout';
 import { fetchAuth } from '../actions/auth';
-import Router from 'next/router';
 import IsLoginRoute from '../utils/isLoginRoute';
 
 function Login(props) {
@@ -67,6 +68,11 @@ const mapStateToProps = ({ authToken }) => ({
 
 const mapDispatchToProps = {
   fetchAuth
+};
+
+Login.propTypes = {
+  fetchAuth: PropTypes.func,
+  authToken: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

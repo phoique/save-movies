@@ -4,6 +4,7 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { connect } from 'react-redux';
 import cookie from 'js-cookie';
+import PropTypes from 'prop-types';
 import { addMovie } from '../actions/addMovie';
 import PrivateRoute from '../utils/privateRoute';
 import Layout from '../components/layout';
@@ -133,6 +134,10 @@ const mapStateToProps = ({ newMovie }) => ({
 
 const mapDispatchToProps = {
   addMovie
+};
+
+Add.propTypes = {
+  addMovie: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Add);

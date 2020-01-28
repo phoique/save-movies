@@ -5,6 +5,7 @@ import { getUser, deleteUser, permUser } from '../actions/users';
 import UserDetail from '../components/UserDetail';
 import AdminRoute from '../utils/adminRoute';
 import Layout from '../components/layout';
+import PropTypes from 'prop-types';
 
 function Users(props) {
 
@@ -67,6 +68,13 @@ const mapDispatchToProps = {
   getUser,
   deleteUser,
   permUser
+};
+
+Users.propTypes = {
+  getUser: PropTypes.func,
+  deleteUser: PropTypes.func,
+  permUser: PropTypes.func,
+  users: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users);

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 
 function Actions({ role }) {
@@ -35,5 +36,9 @@ function Actions({ role }) {
     </ul>
   );
 }
+
+Actions.propTypes = {
+  role: PropTypes.string
+};
 
 export default Actions;

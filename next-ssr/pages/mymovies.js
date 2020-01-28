@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import decode from 'jwt-decode';
 import cookie from 'js-cookie';
+import PropTypes from 'prop-types';
 import MoviesDetail from '../components/moviesDetail';
 import Pagination from '../components/pagination';
 import Layout from '../components/layout';
@@ -56,6 +57,11 @@ const mapStateToProps = ({ myMovies }) => ({
 
 const mapDispatchToProps = {
   getMovies
+};
+
+Movies.propTypes = {
+  getMovies: PropTypes.func,
+  myMovies: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movies);

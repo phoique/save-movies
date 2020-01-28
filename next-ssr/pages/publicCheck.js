@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import CheckDetail from '../components/CheckDetail';
 import Pagination from '../components/pagination';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { getCheckMovie, postCheckMovie } from '../actions/publicCheck';
 import AdminRoute from '../utils/adminRoute';
 import Layout from '../components/layout';
@@ -55,6 +56,12 @@ const mapStateToProps = ({ checkMovies }) => ({
 const mapDispatchToProps = {
   getCheckMovie,
   postCheckMovie
+};
+
+PublicCheck.propTypes = {
+  getCheckMovie: PropTypes.func,
+  postCheckMovie: PropTypes.func,
+  checkMovies: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PublicCheck);
