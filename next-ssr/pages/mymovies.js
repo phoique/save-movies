@@ -10,52 +10,52 @@ import PrivateRoute from '../utils/privateRoute';
 
 
 function Movies(props) {
-    // Kullanıcı tokenini decode ediyoruz.
-    const user_info = cookie.get('token') ?
-        decode(cookie.get('token') || null) 
-        : 
-        null;
+  // Kullanıcı tokenini decode ediyoruz.
+  const user_info = cookie.get('token') ?
+    decode(cookie.get('token') || null) 
+    : 
+    null;
   
-    // Şu anda gösterilen sayfanın numarası sayfa yenilendiğinde 0 olmaktadır.
-    const [showPage, setShowPage] = useState(1);
+  // Şu anda gösterilen sayfanın numarası sayfa yenilendiğinde 0 olmaktadır.
+  const [showPage, setShowPage] = useState(1);
 
-    // Tüm değerleri saniye başı çeken yaşam methodu
-    useEffect(() => {
+  // Tüm değerleri saniye başı çeken yaşam methodu
+  useEffect(() => {
     // eslint-disable-next-line
     if(user_info){
-            props.getMovies(user_info.username, showPage);
-        }
+      props.getMovies(user_info.username, showPage);
+    }
     // eslint-disable-next-line
   }, []);
 
-    const ShowPage = (showPage) => {
-        setShowPage(showPage);
-        props.getMovies(user_info.username, showPage);
-    };
+  const ShowPage = (showPage) => {
+    setShowPage(showPage);
+    props.getMovies(user_info.username, showPage);
+  };
   
-    return (
-        <PrivateRoute>
-            <Layout>
-                <div className="movie-grid mt-4">
-                    {
-                        <MoviesDetail movies = {props.myMovies.movies}/>
-                    }
-                    {
-                        (props.myMovies.page > 1) ? 
-                            <Pagination pages={props.myMovies.page} ShowPage={ShowPage}/> : null
-                    }
-                </div>
-            </Layout>
-        </PrivateRoute>
-    );
+  return (
+    <PrivateRoute>
+      <Layout>
+        <div className="movie-grid mt-4">
+          {
+            <MoviesDetail movies = {props.myMovies.movies}/>
+          }
+          {
+            (props.myMovies.page > 1) ? 
+              <Pagination pages={props.myMovies.page} ShowPage={ShowPage}/> : null
+          }
+        </div>
+      </Layout>
+    </PrivateRoute>
+  );
 }
 
 const mapStateToProps = ({ myMovies }) => ({
-    myMovies
+  myMovies
 });
 
 const mapDispatchToProps = {
-    getMovies
+  getMovies
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movies);
