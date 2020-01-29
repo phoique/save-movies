@@ -11,7 +11,7 @@ registerRoute.get('/', (request, reponse) => {
   reponse.json({
     status: 200
   });
-  console.log(request.decode)
+  console.log(request.decode);
 });
 
 // Kullanıcı kayıt post route.

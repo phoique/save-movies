@@ -1,4 +1,4 @@
-import mongoose, { mongo } from 'mongoose';
+import mongoose from 'mongoose';
 import paginate from 'mongoose-paginate';
 const Schema = mongoose.Schema;
 

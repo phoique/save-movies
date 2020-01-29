@@ -45,7 +45,7 @@ app.use(fileUpload({
   createParentPath: true,
   limits: { 
     fileSize: 2 * 1024 * 1024 * 1024 //2MB max file(s) size
-},
+  },
 }));
 
 app.use(parser.json());
@@ -62,5 +62,5 @@ app.use('/api/logout', logout);
 app.use('/api/', home);
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log(`Server started: ${process.env.PORT}`);
+  console.log(`Server started: ${process.env.PORT}`);
 });

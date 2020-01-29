@@ -1,4 +1,4 @@
-import express, { response } from 'express';
+import express from 'express';
 
 // model
 import userModel from '../models/User';

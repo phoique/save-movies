@@ -8,7 +8,7 @@ function isLogin(request, response, next) {
   if(token) {
 
     // Token kısmı boş değilse kontrol işlemi gerçekleştiriliyor.
-    jwt.verify(token, process.env.SECRET_KEY, (error, decoded) => {
+    jwt.verify(token, process.env.SECRET_KEY, (error) => {
 
       if(error) {
         response.json({
