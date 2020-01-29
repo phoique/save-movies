@@ -1,5 +1,5 @@
 import axios from 'axios';
-import cookie from 'js-cookie';
+import { getToken } from '../utils/token';
 
 const FETCH_MOVIE_PENDING = 'FETCH_MOVIE_PENDING'; 
 const FETCH_MOVIE_FULFILLED = 'FETCH_MOVIE_FULFILLED';
@@ -13,7 +13,7 @@ function getMovies(username, pageNumber){
       payload: axios({
         url: `http://localhost:3001/api/movies/${pageNumber}`,
         headers: {
-          'x-access-token': cookie.get('token')
+          'x-access-token': getToken()
         },
         method: 'post',
         data: {

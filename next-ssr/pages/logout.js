@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
-import cookie from 'js-cookie';
 import Router from 'next/router';
+import { removeToken, getToken } from '../utils/token';
 
 function Logout() {
 
   // Tokeni silme
-  cookie.remove('token');
+  removeToken();
 
   // Yaşam methodu ile silindiğini kontrol edip yönlendirme.
   useEffect(() => {
-    if(cookie.get('token') === undefined) {
+    if(getToken() === undefined) {
       Router.push('/');
     }
   }, []);

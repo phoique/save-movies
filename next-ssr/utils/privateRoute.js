@@ -1,17 +1,14 @@
 import { useEffect } from 'react';
 import Router from 'next/router';
-import cookie from 'js-cookie';
+import { getToken } from './token';
 
 function PrivateRoute({ children }) {
-  // Token
-  const token = cookie.get('token');
-
   // Token yoksa 
   useEffect(() => {
-    if(!token) {
+    if(!getToken()) {
       Router.push('/');
     }
-  }, [token]);
+  }, [getToken()]);
   // Token varsa.
   return(children); 
 }

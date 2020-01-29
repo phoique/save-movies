@@ -1,13 +1,9 @@
 import Router from 'next/router';
-import cookie from 'js-cookie';
+import { getToken } from './token';
 
 function IsLoginRoute({ children }) {
-  
-  // Token
-  const token = cookie.get('token');
-
   // Token varsa giriş ve kayıt sayfaları görünmeyecek.
-  if(token) {
+  if(getToken()) {
     return Router.push('/');
   }
   // Token yoksa giriş ve kayıt sayfaları görünecek.

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Layout from '../components/layout';
 import { fetchAuth } from '../actions/auth';
 import IsLoginRoute from '../utils/isLoginRoute';
+import { setToken } from '../utils/token';
 
 function Login(props) {
 
@@ -28,7 +29,7 @@ function Login(props) {
 
   useEffect(() => {
     if(props.authToken.token != null) {
-      cookie.set('token', props.authToken.token);
+      setToken(props.authToken.token);
       Router.push('/');
     }
   }, [props.authToken]);

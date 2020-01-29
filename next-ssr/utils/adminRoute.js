@@ -1,19 +1,14 @@
 import { useEffect } from 'react';
 import Router from 'next/router';
-import cookie from 'js-cookie';
-import decode from 'jwt-decode';
+import { getToken, getUserInfo } from './token';
 
 function AdminRoute({ children }) {
-  // Token
-  const token = cookie.get('token');
-  const user_info = token ? decode(token || null) : null;
-
   // Token yoksa 
   useEffect(() => {
-    if(!token || user_info.user_role !== 'admin') {
+    if(!getToken() || getUserInfo('role') !== 'admin') {
       Router.push('/');
     }
-  }, [token]);
+  }, [getToken()]);
   // Token varsa.
   return(children); 
 }

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Layout from '../components/layout';
-import cookie from 'js-cookie';
 import Router from 'next/router';
 import Link from 'next/link';
 import { fetchAuth } from '../actions/auth';
 import IsLoginRoute from '../utils/isLoginRoute';
 import PropTypes from 'prop-types';
+import { setToken } from '../utils/token';
 
 function Register(props) {
 
@@ -38,7 +38,7 @@ function Register(props) {
 
   useEffect(() => {
     if(props.authToken.token != null) {
-      cookie.set('token', props.authToken.token);
+      setToken(props.authToken.token);
       Router.push('/');
     }
   }, [props.authToken]);

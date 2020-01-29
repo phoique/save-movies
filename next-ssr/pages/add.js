@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import decode from 'jwt-decode';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { connect } from 'react-redux';
-import cookie from 'js-cookie';
 import PropTypes from 'prop-types';
 import { addMovie } from '../actions/addMovie';
 import PrivateRoute from '../utils/privateRoute';
 import Layout from '../components/layout';
+import { getUserInfo } from '../utils/token';
 
 const animatedComponents = makeAnimated();
 
@@ -26,11 +25,6 @@ function Add(props) {
     { value: 'Aşk', label: 'Aşk' },
     { value: 'Korku', label: 'Korku' },
   ];  
-
-  const user_info_decode = cookie.get('token') ?
-    decode(cookie.get('token') || null) 
-    : 
-    null;
 
   // Eklediği filmin değerlerini tutacak state
   const [movieInfo, setMovieInfo] = useState({
@@ -55,7 +49,7 @@ function Add(props) {
 
   const AddMovie = () => {
     props.addMovie({
-      username: user_info_decode.username,
+      username: getUserInfo('username'),
       ...movieInfo
     });
   };

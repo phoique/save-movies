@@ -1,5 +1,5 @@
 import axios from 'axios';
-import cookie from 'js-cookie';
+import { getToken } from '../utils/token';
 
 const ADD_MOVIE_PENDING = 'ADD_MOVIE_PENDING'; 
 const ADD_MOVIE_FULFILLED = 'ADD_MOVIE_FULFILLED';
@@ -12,7 +12,7 @@ function addMovie({username, name, genre, content, public_user}) {
       payload: axios({
         url: 'http://localhost:3001/api/add',
         headers: {
-          'x-access-token': cookie.get('token')
+          'x-access-token': getToken()
         },
         method: 'post',
         data: {

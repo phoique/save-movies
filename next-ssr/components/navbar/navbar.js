@@ -1,28 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import cookie from 'js-cookie';
-import decode from 'jwt-decode';
 import Actions from './actions';
 import Auth from './auth';
 import Dropdown from './dropdown';
+import { getToken, getUserInfo } from '../../utils/token';
 
 function Navbar() {
-
-  const [info, setInfo] = useState({});
-
-  // Her bir aksiyonda token olup olmadığını kontrol ediyor. Bu da çıkış yapıldığında navbarın eski halini alması
-  // için sayfa yenilenmesi sorununu çözüyor.
-  useEffect(() => {
-    // Eğer localstorage token boş ise değer null oluyor dolu ise kullanıcı bilgilerini
-    // bir object içinde dönüyor. Kullanıcı adı ve rolü şeklinde.
-    const user_info = cookie.get('token') ?
-      decode(cookie.get('token') || null) 
-      : 
-      null;
-
-    setInfo({...user_info});
-  }, []);
-
   return (
     <div>
       <nav className="navbar navbar-expand-sm navbar-light mt-2">
@@ -41,18 +24,18 @@ function Navbar() {
                 </Link>
               </li>
               {
-                (cookie.get('token') === undefined) ? 
+                (getToken() === undefined) ? 
                   null 
                   : 
-                  <Actions role={info.user_role}/>
+                  <Actions role={getUserInfo('role')}/>
               }
             </ul>
             <ul className="navbar-nav ml-auto">
               {(
-                cookie.get('token') === undefined ?
+                getToken() === undefined ?
                   <Auth />
                   :
-                  <Dropdown username={info.username}/>
+                  <Dropdown username={getUserInfo('username')}/>
               )}  
             </ul>
           </div>
