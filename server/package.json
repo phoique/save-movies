@@ -40,14 +40,15 @@
     "express-fileupload": "^1.1.6",
     "express-session": "^1.17.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.8.6",
+    "mongoose": "^5.8.10",
     "mongoose-paginate": "^5.0.3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.7",
-    "@babel/core": "^7.7.7",
-    "@babel/node": "^7.7.7",
-    "@babel/preset-env": "^7.7.7",
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/node": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "eslint": "^6.8.0",
     "nodemon": "^2.0.2"
   }
 }
