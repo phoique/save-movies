@@ -46,7 +46,7 @@ function getUserInfo(value) {
       return info.user_role;
     }
     else {
-      return null
+      return null;
     }
 
   }
