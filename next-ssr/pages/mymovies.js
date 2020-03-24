@@ -44,6 +44,10 @@ function Movies(props) {
   );
 }
 
+Movies.getInitialProps = async(context) => {
+  return {context};
+}
+
 const mapStateToProps = ({ myMovies }) => ({
   myMovies
 });
