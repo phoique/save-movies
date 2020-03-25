@@ -5,7 +5,7 @@ import Pagination from '../components/pagination';
 import Layout from '../components/layout';
 import { connect } from 'react-redux';
 import { getMovies } from '../actions/myMovies';
-import PrivateRoute from '../utils/privateRoute';
+import { Auth } from '../utils/authentication';
 import { getUserInfo } from '../utils/token';
 
 
@@ -16,7 +16,7 @@ function Movies(props) {
   // Tüm değerleri saniye başı çeken yaşam methodu
   useEffect(() => {
     // eslint-disable-next-line
-    if(getUserInfo('all')){
+    if (getUserInfo('all')) {
       props.getMovies(getUserInfo('username'), showPage);
     }
     // eslint-disable-next-line
@@ -26,26 +26,25 @@ function Movies(props) {
     setShowPage(showPage);
     props.getMovies(getUserInfo('username'), showPage);
   };
-  
+
   return (
-    <PrivateRoute>
-      <Layout>
-        <div className="movie-grid mt-4">
-          {
-            <MoviesDetail movies = {props.myMovies.movies}/>
-          }
-          {
-            (props.myMovies.page > 1) ? 
-              <Pagination pages={props.myMovies.page} ShowPage={ShowPage}/> : null
-          }
-        </div>
-      </Layout>
-    </PrivateRoute>
+    <Layout>
+      <div className="movie-grid mt-4">
+        {
+          <MoviesDetail movies={props.myMovies.movies} />
+        }
+        {
+          (props.myMovies.page > 1) ?
+            <Pagination pages={props.myMovies.page} ShowPage={ShowPage} /> : null
+        }
+      </div>
+    </Layout>
   );
 }
 
-Movies.getInitialProps = async(context) => {
-  return {context};
+Movies.getInitialProps = async (context) => {
+  Auth(context);
+  return {};
 }
 
 const mapStateToProps = ({ myMovies }) => ({

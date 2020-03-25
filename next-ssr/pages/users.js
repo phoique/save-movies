@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Pagination from '../components/Pagination';
 import { getUser, deleteUser, permUser } from '../actions/users';
 import UserDetail from '../components/UserDetail';
-import AdminRoute from '../utils/adminRoute';
+import { AuthRole } from '../utils/authentication';
 import Layout from '../components/layout';
 import PropTypes from 'prop-types';
 
@@ -26,7 +26,7 @@ function Users(props) {
 
   // Kullanıcı işlemleri silme ve güncelleme.
   const userOperations = ({ target }, user_id) => {
-    if(target.name === 'permission') {
+    if (target.name === 'permission') {
       props.permUser(user_id);
       props.getUser(showPage);
     }
@@ -34,7 +34,7 @@ function Users(props) {
       props.deleteUser(user_id);
       props.getUser(showPage);
     }
-    else if(target.name === 'edit') {
+    else if (target.name === 'edit') {
       // şu anlık düzenleme bulunmuyor.
       props.getUser(showPage);
     }
@@ -44,20 +44,23 @@ function Users(props) {
   };
 
   return (
-    <AdminRoute>
-      <Layout>
-        <div className="mt-3 text-center">
-          <div className="table-responsive">
-            <UserDetail users={props.users.users} userOperations={userOperations}/>
-          </div>
-          {
-            (props.users.page > 1) ? 
-              <Pagination pages={props.users.page} ShowPage={ShowPage}/> : null
-          }
+    <Layout>
+      <div className="mt-3 text-center">
+        <div className="table-responsive">
+          <UserDetail users={props.users.users} userOperations={userOperations} />
         </div>
-      </Layout>
-    </AdminRoute>
+        {
+          (props.users.page > 1) ?
+            <Pagination pages={props.users.page} ShowPage={ShowPage} /> : null
+        }
+      </div>
+    </Layout>
   );
+}
+
+Users.getInitialProps = async (context) => {
+  AuthRole(context);
+  return {};
 }
 
 const mapStateToProps = ({ users }) => ({

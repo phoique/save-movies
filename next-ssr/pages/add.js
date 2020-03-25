@@ -4,9 +4,9 @@ import makeAnimated from 'react-select/animated';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addMovie } from '../actions/addMovie';
-import PrivateRoute from '../utils/privateRoute';
 import Layout from '../components/layout';
 import { getUserInfo } from '../utils/token';
+import { Auth } from '../utils/authentication';
 
 const animatedComponents = makeAnimated();
 
@@ -24,13 +24,13 @@ function Add(props) {
     { value: 'Gizem/Gerilim', label: 'Gizem/Gerilim' },
     { value: 'Aşk', label: 'Aşk' },
     { value: 'Korku', label: 'Korku' },
-  ];  
+  ];
 
   // Eklediği filmin değerlerini tutacak state
   const [movieInfo, setMovieInfo] = useState({
-    name: '', 
-    genre: [], 
-    content: '', 
+    name: '',
+    genre: [],
+    content: '',
     public_user: null
   });
 
@@ -55,31 +55,30 @@ function Add(props) {
   };
 
   return (
-    <PrivateRoute>
-      <Layout>
-        <div className="movie-add-clean">
-          <form onSubmit={AddMovie}>
-            <h2 className="text-center">Film Ekle</h2>
-            <div className="form-group">
-              <input className="form-control" type="text" name="name" onChange={changeValue} placeholder="Film adı" required maxLength="20" />
-            </div>
-            <div className="mt-2 mb-2">
-              <label>Film türü:</label>
-              <Select
-                closeMenuOnSelect={false}
-                components={animatedComponents}
-                isMulti
-                options={genreOptionValue}
-                onChange={
-                  (genre) => 
-                    setMovieInfo({
-                      ...movieInfo,
-                      genre
-                    })
-                }
-              />
-            </div>
-            {/* <div className="input-group">
+    <Layout>
+      <div className="movie-add-clean">
+        <form onSubmit={AddMovie}>
+          <h2 className="text-center">Film Ekle</h2>
+          <div className="form-group">
+            <input className="form-control" type="text" name="name" onChange={changeValue} placeholder="Film adı" required maxLength="20" />
+          </div>
+          <div className="mt-2 mb-2">
+            <label>Film türü:</label>
+            <Select
+              closeMenuOnSelect={false}
+              components={animatedComponents}
+              isMulti
+              options={genreOptionValue}
+              onChange={
+                (genre) =>
+                  setMovieInfo({
+                    ...movieInfo,
+                    genre
+                  })
+              }
+            />
+          </div>
+          {/* <div className="input-group">
               <div className="input-group-prepend">
                 <span className="input-group-text" id="inputGroupFileAddon01">Film kapağı</span>
               </div>
@@ -93,33 +92,37 @@ function Add(props) {
                 </label>
               </div>
             </div> */}
-            <div className="form-group form-mt"><textarea className="form-control" rows="14" name="content"
-              placeholder="Film hakkında kısa özet" onChange={changeValue} required></textarea>
-            </div>
-            <div className="form-group">
-              <div className="form-check">
-                <label className="form-check-label">
-                  <input 
-                    className="form-check-input" 
-                    name="public_user" 
-                    onChange={
-                      ({ target }) => 
-                        setMovieInfo({
-                          ...movieInfo, public_user: (target.checked) ? 'on' : null
-                        })} 
-                    type="checkbox" />
+          <div className="form-group form-mt"><textarea className="form-control" rows="14" name="content"
+            placeholder="Film hakkında kısa özet" onChange={changeValue} required></textarea>
+          </div>
+          <div className="form-group">
+            <div className="form-check">
+              <label className="form-check-label">
+                <input
+                  className="form-check-input"
+                  name="public_user"
+                  onChange={
+                    ({ target }) =>
+                      setMovieInfo({
+                        ...movieInfo, public_user: (target.checked) ? 'on' : null
+                      })}
+                  type="checkbox" />
                   Film herkes tarafından görülsün.
                 </label>
-              </div>
             </div>
-            <div className="form-group">
-              <button className="btn btn-primary text-center" type="submit">Kaydet</button>
-            </div>
-          </form>
-        </div>
-      </Layout>
-    </PrivateRoute>
+          </div>
+          <div className="form-group">
+            <button className="btn btn-primary text-center" type="submit">Kaydet</button>
+          </div>
+        </form>
+      </div>
+    </Layout>
   );
+}
+
+Add.getInitialProps = async(context) => {
+  Auth(context);
+  return {};
 }
 
 const mapStateToProps = ({ newMovie }) => ({
